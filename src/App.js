@@ -36,11 +36,11 @@ function App() {
 							<Route path="/home" element={<Home />} />
 							<Route path="/create" element={<CreateJob />} />
 							<Route path="/profile" element={<Profile />} />
+							<Route path="/profile/:username" element={<UpdateProfile />} />
 						</Route>
 						<Route path="/" element={<Login />} />
 						<Route path="/register" element={<Register />} />
 						<Route path="/forget-password" element={<ForgetPassword />} />
-						<Route path="/profile/:username" element={<UpdateProfile />} />
 					</Routes>
 					<GlobalStyle />
 				</AuthProvider>

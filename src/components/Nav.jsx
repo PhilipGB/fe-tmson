@@ -32,9 +32,9 @@ const Nav = () => {
 				''
 			)}
 			{currentUser ? (
-				<button className="profile-btn">
-					<Link to="/profile">Your Profile</Link>
-				</button>
+				<Link to="/profile">
+					<button className="profile-btn">Your Profile</button>
+				</Link>
 			) : (
 				''
 			)}
@@ -84,6 +84,8 @@ const StyledNav = styled(motion.nav)`
 	.profile-btn {
 		position: absolute;
 		right: 130px;
+		top: 31px;
+		margin-right: 10px;
 	}
 	.welcome-msg {
 		position: absolute;

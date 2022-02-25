@@ -14,15 +14,13 @@ function Profile() {
 			<div>
 				<h1>Your Profile</h1>
 				<img className="profile-img" src={user.avatar_url} />
-				<p>{user.first_name}</p>
-				<p>{user.last_name}</p>
-				<p>{user.birth_date}</p>
-				<p>
-					{user.address}
-					{user.postcode}
-				</p>
-				<p>{user.email_address}</p>
-				<p>{user.bio}</p>
+				<p>First Name: {user.first_name}</p>
+				<p>Last Name: {user.last_name}</p>
+				<p>Date of Birth: {user.birth_date}</p>
+				<p>Address: {user.address}</p>
+				<p>Postcode: {user.postcode}</p>
+				<p>Email: {user.email_address}</p>
+				<p>Bio: {user.bio}</p>
 
 				<button className="update-btn">
 					<Link to={`/profile/${user.username}`}>Update Your Details</Link>
@@ -41,7 +39,7 @@ const StyledRegister = styled.div`
 
 	h1 {
 		position: absolute;
-		top: 300px;
+		top: 200px;
 	}
 
 	div {
@@ -51,7 +49,7 @@ const StyledRegister = styled.div`
 		align-items: center;
 		padding: 5rem 7rem;
 		border-radius: 1rem;
-		height: 50%;
+		height: 80%;
 		width: 60%;
 	}
 
@@ -60,6 +58,9 @@ const StyledRegister = styled.div`
 		border-radius: 50px;
 	}
 	.update-btn {
+		margin: 10px;
+	}
+	p {
 		margin: 10px;
 	}
 `;
