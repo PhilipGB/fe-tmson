@@ -16,7 +16,6 @@ const Login = () => {
 			setError('');
 			setLoading(true);
 			login(emailRef.current.value, passwordRef.current.value);
-			console.log(currentUser);
 			navigate('/home');
 		} catch {
 			setError('Failed to login');
@@ -27,6 +26,7 @@ const Login = () => {
 	return (
 		<StyledLogin>
 			<form onSubmit={handleSubmit}>
+				<h2 className="logon-title">Log in</h2>
 				<input type="email" placeholder="Email" ref={emailRef} required />
 				<input
 					type="password"
@@ -62,6 +62,9 @@ const StyledLogin = styled.div`
 		justify-content: center;
 		padding: 10rem 10rem;
 		border-radius: 1rem;
+		.logon-title {
+			margin: 20px;
+		}
 	}
 
 	input {

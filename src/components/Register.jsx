@@ -45,6 +45,9 @@ const Register = () => {
 				<button disabled={loading} type="submit">
 					Register
 				</button>
+				<p>
+					Already have an account? Click <Link to="/">here</Link>
+				</p>
 			</form>
 		</StyledRegister>
 	);

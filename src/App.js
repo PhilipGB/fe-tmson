@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import CreateJob from './components/CreateJob';
+import ForgetPassword from './components/ForgetPassword';
 import GlobalStyle from './components/GlobalStyle';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -22,6 +23,7 @@ function App() {
 					</Route>
 					<Route path="/" element={<Login />} />
 					<Route path="/register" element={<Register />} />
+					<Route path="/forget-password" element={<ForgetPassword />} />
 				</Routes>
 				<GlobalStyle />
 			</AuthProvider>
