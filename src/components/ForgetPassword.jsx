@@ -60,6 +60,7 @@ const StyledLogin = styled.div`
 		justify-content: center;
 		padding: 10rem 10rem;
 		border-radius: 1rem;
+		height: 50%;
 		.password-header {
 			margin: 10px;
 		}

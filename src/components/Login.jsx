@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
+import { getUsers } from '../utils/api';
 const Login = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -9,6 +10,10 @@ const Login = () => {
 	const passwordRef = useRef();
 	const { login, currentUser } = useAuth();
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		getUsers();
+	}, []);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -61,6 +66,7 @@ const StyledLogin = styled.div`
 		align-items: center;
 		justify-content: center;
 		padding: 10rem 10rem;
+		height: 60%;
 		border-radius: 1rem;
 		.logon-title {
 			margin: 20px;
