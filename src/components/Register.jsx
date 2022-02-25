@@ -1,12 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
+import { UserContext } from '../Contexts/UserContext';
 import { postUser } from '../utils/api';
 const Register = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const emailRef = useRef();
+	const { user, setUser } = useContext(UserContext);
 	const firstNameRef = useRef();
 	const lastNameRef = useRef();
 	const bioRef = useRef();
@@ -18,18 +20,6 @@ const Register = () => {
 	const passwordRef = useRef();
 	const { signUp, currentUser } = useAuth();
 	const navigate = useNavigate();
-
-	const [user, setUser] = useState({
-		username: '',
-		first_name: '',
-		last_name: '',
-		birth_date: '',
-		avatar_url: '',
-		address: '',
-		postcode: '',
-		email_address: '',
-		bio: '',
-	});
 
 	const handleChange = (e) => {
 		setUser({
@@ -43,7 +33,6 @@ const Register = () => {
 			email_address: emailRef.current.value,
 			bio: bioRef.current.value,
 		});
-		console.log(user);
 	};
 
 	const handleSubmit = (e) => {
@@ -146,6 +135,7 @@ const StyledRegister = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	text-align: center;
 
 	h1 {
 		margin-bottom: 2rem;
@@ -153,6 +143,7 @@ const StyledRegister = styled.div`
 
 	div {
 		margin-top: 2rem;
+
 		background-color: aliceblue;
 		display: flex;
 		flex-direction: column;

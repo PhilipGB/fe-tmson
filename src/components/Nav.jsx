@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { UserContext } from '../Contexts/UserContext';
 import { motion } from 'framer-motion';
 import { useAuth } from '../Contexts/AuthContext';
+import { Link } from 'react-router-dom';
 const variants = {
 	open: { opacity: 1, x: 0 },
 	closed: { opacity: 0, x: '-100%' },
@@ -10,6 +12,8 @@ const variants = {
 const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { logout, currentUser } = useAuth();
+	const { user, setUser } = useContext(UserContext);
+
 	const handleLogOut = () => {
 		if (currentUser) {
 			logout();
@@ -23,7 +27,14 @@ const Nav = () => {
 				<div></div>
 			</StyledHamburger>
 			{currentUser ? (
-				<h3 className="welcome-msg">Hello {currentUser.email}</h3>
+				<h3 className="welcome-msg">Hello {user.first_name}</h3>
+			) : (
+				''
+			)}
+			{currentUser ? (
+				<button className="profile-btn">
+					<Link to="/profile">Your Profile</Link>
+				</button>
 			) : (
 				''
 			)}
@@ -31,14 +42,17 @@ const Nav = () => {
 				animate={isOpen ? 'open' : 'closed'}
 				variants={variants}
 			></StyledMenu>
-			<h1>Logo</h1>
+			<h1>
+				<Link to="/home">Logo</Link>
+			</h1>
 			{currentUser ? (
 				<button className="logout-btn" onClick={handleLogOut}>
-					Log out
+					Log Out
 				</button>
 			) : (
 				''
 			)}
+			{}
 		</StyledNav>
 	);
 };
@@ -66,6 +80,10 @@ const StyledNav = styled(motion.nav)`
 	.logout-btn {
 		position: absolute;
 		right: 40px;
+	}
+	.profile-btn {
+		position: absolute;
+		right: 130px;
 	}
 	.welcome-msg {
 		position: absolute;

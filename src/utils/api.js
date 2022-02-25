@@ -16,3 +16,5 @@ export const postUser = (user) => {
 		console.log(data);
 	});
 };
+
+export const getUser = (username) => {};

@@ -1,5 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../Contexts/UserContext';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
 import { getUsers } from '../utils/api';
@@ -9,23 +10,27 @@ const Login = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const { login, currentUser } = useAuth();
-	const navigate = useNavigate();
+	const { user, setUser } = useContext(UserContext);
 
+	const navigate = useNavigate();
+	const [users, setUsers] = useState([]);
 	useEffect(() => {
-		getUsers();
+		getUsers().then(({ users }) => {
+			setUsers(users);
+		});
 	}, []);
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		try {
-			setError('');
-			setLoading(true);
-			login(emailRef.current.value, passwordRef.current.value);
-			navigate('/home');
-		} catch {
-			setError('Failed to login');
-		}
-		setLoading(false);
+		users.map((user) => {
+			if (user.email_address === emailRef.current.value) {
+				setUser(user);
+				setError('');
+				setLoading(true);
+				login(emailRef.current.value, passwordRef.current.value);
+				navigate('/home');
+			}
+			setLoading(false);
+		});
 	};
 
 	return (
