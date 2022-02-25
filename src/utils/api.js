@@ -9,3 +9,10 @@ export const getUsers = () => {
 		return data;
 	});
 };
+
+export const postUser = (user) => {
+	console.log(user);
+	return tmsonApi.post('/users', user).then(({ data }) => {
+		console.log(data);
+	});
+};

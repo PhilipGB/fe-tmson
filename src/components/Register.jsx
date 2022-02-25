@@ -2,19 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
-/*
-  username: "TestUser",
-      first_name: "Test",
-      last_name: "User",
-      birth_date: "2000-01-01T00:00:00.000Z",
-      avatar_url:
-        "https://robohash.org/exercitationemillumlibero.png?size=50x50&set=set1",
-      address: "2 Test Place",
-      postcode: "T3 5TS",
-      email_address: "TestUser@wordpress.org",
-      bio: "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-
-*/
+import { postUser } from '../utils/api';
 const Register = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -30,21 +18,39 @@ const Register = () => {
 	const passwordRef = useRef();
 	const { signUp, currentUser } = useAuth();
 	const navigate = useNavigate();
+
+	const [user, setUser] = useState({
+		username: '',
+		first_name: '',
+		last_name: '',
+		birth_date: '',
+		avatar_url: '',
+		address: '',
+		postcode: '',
+		email_address: '',
+		bio: '',
+	});
+
+	const handleChange = (e) => {
+		setUser({
+			username: usernameRef.current.value,
+			first_name: firstNameRef.current.value,
+			last_name: lastNameRef.current.value,
+			birth_date: dobRef.current.value,
+			avatar_url: avatarUrlRef.current.value,
+			address: addressRef.current.value,
+			postcode: postcodeRef.current.value,
+			email_address: emailRef.current.value,
+			bio: bioRef.current.value,
+		});
+		console.log(user);
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		try {
-			setError('');
-			setLoading(true);
-			signUp(emailRef.current.value, passwordRef.current.value);
-			console.log(currentUser);
-
-			navigate('/home');
-		} catch (err) {
-			console.log(err);
-			setError('Failed to create account');
-		}
-		setLoading(false);
+		postUser(user);
+		signUp(emailRef.current.value, passwordRef.current.value);
+		navigate('/home');
 	};
 	return (
 		<StyledRegister>
@@ -53,45 +59,70 @@ const Register = () => {
 					<h1>Sign Up</h1>
 					{error}
 					<input
+						onChange={handleChange}
 						type="text"
 						ref={firstNameRef}
 						placeholder="First Name"
 						required
 					/>
 					<input
+						onChange={handleChange}
 						type="text"
 						ref={lastNameRef}
 						placeholder="Last Name"
 						required
 					/>
-					<input type="email" ref={emailRef} placeholder="Email" required />
 					<input
+						onChange={handleChange}
+						type="email"
+						ref={emailRef}
+						placeholder="Email"
+						required
+					/>
+					<input
+						onChange={handleChange}
 						type="text"
 						ref={usernameRef}
 						placeholder="Username"
 						required
 					/>
 					<input
+						onChange={handleChange}
 						type="password"
 						ref={passwordRef}
 						placeholder="Password"
 						required
 					/>
 					<input
+						onChange={handleChange}
 						type="text"
 						ref={avatarUrlRef}
 						placeholder="Avatar Url"
 						required
 					/>
-					<input type="text" ref={usernameRef} placeholder="Address" required />
 					<input
+						onChange={handleChange}
+						type="text"
+						ref={addressRef}
+						placeholder="Address"
+						required
+					/>
+					<input
+						onChange={handleChange}
 						type="text"
 						ref={postcodeRef}
 						placeholder="Postcode"
 						required
 					/>
-					<input type="text" ref={bioRef} placeholder="Bio" required />
 					<input
+						onChange={handleChange}
+						type="text"
+						ref={bioRef}
+						placeholder="Bio"
+						required
+					/>
+					<input
+						onChange={handleChange}
 						type="date"
 						ref={dobRef}
 						placeholder="Date Of Birth"
@@ -121,6 +152,7 @@ const StyledRegister = styled.div`
 	}
 
 	div {
+		margin-top: 2rem;
 		background-color: aliceblue;
 		display: flex;
 		flex-direction: column;
