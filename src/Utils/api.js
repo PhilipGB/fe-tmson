@@ -14,3 +14,15 @@ export const postNewTask = (task) => {
       console.log(err.response.data);
     });
 };
+
+export const getSkills = () => {
+  return tasksApi.get('/skills').then(({ data }) => {
+    return data.skill_categories;
+  });
+};
+
+export const getSkillsSubCat = (category) => {
+  return tasksApi.get(`/skills/${category}`).then(({ data }) => {
+    return data.skills;
+  });
+};
