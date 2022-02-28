@@ -1,11 +1,12 @@
-import React, { useEffect, useContext, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useContext, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
-import { getUsers } from '../utils/api';
+import { getUsers, patchUser } from '../utils/api';
 function UpdateProfile() {
 	const emailRef = useRef();
 	const { user, setUser } = useContext(UserContext);
+	const navigate = useNavigate();
 	const firstNameRef = useRef();
 	const lastNameRef = useRef();
 	const bioRef = useRef();
@@ -15,81 +16,99 @@ function UpdateProfile() {
 	const addressRef = useRef();
 	const usernameRef = useRef();
 	const passwordRef = useRef();
+	const [currentUser, setCurrentUser] = useState(user);
+	const handleChange = (e) => {
+		setCurrentUser({
+			username: usernameRef.current.value,
+			first_name: firstNameRef.current.value,
+			last_name: lastNameRef.current.value,
+			birth_date: dobRef.current.value,
+			avatar_url: avatarUrlRef.current.value,
+			address: addressRef.current.value,
+			postcode: postcodeRef.current.value,
+			email_address: emailRef.current.value,
+			bio: bioRef.current.value,
+		});
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		patchUser(user.username, currentUser).then((res) => {
+			setUser(currentUser);
+		});
+
+		navigate('/profile');
+	};
+
+	useEffect(() => {}, []);
 
 	return (
 		<StyledRegister>
 			<div>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<h1>Update Your Details</h1>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
-						// ref={firstNameRef}
+						ref={firstNameRef}
 						placeholder="First Name"
-						required
+						defaultValue={user.first_name}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
-						// ref={lastNameRef}
+						ref={lastNameRef}
 						placeholder="Last Name"
-						required
+						defaultValue={user.last_name}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="email"
-						// ref={emailRef}
+						ref={emailRef}
 						placeholder="Email"
-						required
+						defaultValue={user.email_address}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
-						// ref={usernameRef}
+						ref={usernameRef}
 						placeholder="Username"
-						required
+						defaultValue={user.username}
 					/>
+
 					<input
-						// onChange={handleChange}
-						type="password"
-						ref={passwordRef}
-						placeholder="Password"
-						required
-					/>
-					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
 						ref={avatarUrlRef}
 						placeholder="Avatar Url"
-						required
+						defaultValue={user.avatar_url}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
 						ref={addressRef}
 						placeholder="Address"
-						required
+						defaultValue={user.address}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
 						ref={postcodeRef}
 						placeholder="Postcode"
-						required
+						defaultValue={user.postcode}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="text"
 						ref={bioRef}
 						placeholder="Bio"
-						required
+						defaultValue={user.bio}
 					/>
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
 						type="date"
 						ref={dobRef}
 						placeholder="Date Of Birth"
-						required
+						defaultValue={user.birth_date}
 					/>
 					<button type="submit">Submit</button>
 					{/* <p>

@@ -11,7 +11,6 @@ const Login = () => {
 	const passwordRef = useRef();
 	const { login, currentUser } = useAuth();
 	const { user, setUser } = useContext(UserContext);
-
 	const navigate = useNavigate();
 	const [users, setUsers] = useState([]);
 	useEffect(() => {

@@ -84,7 +84,7 @@ const StyledNav = styled(motion.nav)`
 	.profile-btn {
 		position: absolute;
 		right: 130px;
-		top: 31px;
+		top: 22px;
 		margin-right: 10px;
 	}
 	.welcome-msg {

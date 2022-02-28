@@ -6,6 +6,7 @@ import {
 	onAuthStateChanged,
 	sendPasswordResetEmail,
 	signOut,
+	getIdToken,
 } from 'firebase/auth';
 const AuthContext = createContext();
 
@@ -15,6 +16,12 @@ export const useAuth = () => {
 export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState('');
 	const [loading, setLoading] = useState(true);
+
+	const userId = currentUser
+		? currentUser.getIdTokenResult().then((res) => {
+				return res;
+		  })
+		: '';
 
 	const signUp = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
@@ -31,11 +38,13 @@ export function AuthProvider({ children }) {
 	const resetPassword = (email) => {
 		return sendPasswordResetEmail(auth, email);
 	};
+
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setCurrentUser(user);
 			setLoading(false);
 		});
+
 		return unsubscribe;
 	}, []);
 	const value = {
@@ -44,6 +53,7 @@ export function AuthProvider({ children }) {
 		login,
 		logout,
 		resetPassword,
+		userId,
 	};
 	return (
 		<AuthContext.Provider value={value}>

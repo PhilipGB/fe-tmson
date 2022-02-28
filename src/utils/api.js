@@ -17,4 +17,14 @@ export const postUser = (user) => {
 	});
 };
 
-export const getUser = (username) => {};
+export const patchUser = (username, user) => {
+	return tmsonApi
+		.patch(`/users/${username}`, user)
+		.then(({ data }) => {
+			console.log(user);
+			return data;
+		})
+		.catch((err) => {
+			console.log(err.response.data);
+		});
+};
