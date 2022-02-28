@@ -1,10 +1,18 @@
 import React from "react";
+import { useState } from 'react'
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 const SearchBar = () => {
+   
+  const [searchTerm, setSearchTerm] = useState('')
+
+console.log(searchTerm)
+// add function to search button that takes to new page - showing filtered searches only.
+
   return (
     <StyledForm>
-      <input type="text" />
-      <button>Search</button>
+      <input type="text" value={searchTerm} onInput={e => setSearchTerm(e.target.value)}/>
       <select name="" id="">
         <option value="filter" disabled="disabled">
           Filter
@@ -19,6 +27,9 @@ const SearchBar = () => {
         <option value="sort">Advert Age</option>
         <option value="sort">Rating</option>
       </select>
+      <Link to={`/search-results?q=${searchTerm}`}>
+      <button>Search</button>
+      </Link>
     </StyledForm>
   );
 };
