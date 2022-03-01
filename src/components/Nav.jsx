@@ -11,12 +11,13 @@ const variants = {
 
 const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const { logout, currentUser } = useAuth();
+	const { logout, currentUser, isLogged, setIsLogged } = useAuth();
 	const { user, setUser } = useContext(UserContext);
 
 	const handleLogOut = () => {
 		if (currentUser) {
 			logout();
+			setIsLogged(false);
 		}
 	};
 	return (
@@ -26,12 +27,12 @@ const Nav = () => {
 				<div></div>
 				<div></div>
 			</StyledHamburger>
-			{currentUser ? (
-				<h3 className="welcome-msg">Hello {user.first_name}</h3>
+			{isLogged ? (
+				<h3 className="welcome-msg"> Hello {user.first_name}</h3>
 			) : (
 				''
 			)}
-			{currentUser ? (
+			{isLogged ? (
 				<Link to="/profile">
 					<button className="profile-btn">Your Profile</button>
 				</Link>
@@ -45,7 +46,7 @@ const Nav = () => {
 			<h1>
 				<Link to="/home">Logo</Link>
 			</h1>
-			{currentUser ? (
+			{isLogged ? (
 				<button className="logout-btn" onClick={handleLogOut}>
 					Log Out
 				</button>

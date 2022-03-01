@@ -5,13 +5,14 @@ import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
 import { getUsers } from '../utils/api';
 const Login = () => {
-	const [error, setError] = useState('');
-	const [loading, setLoading] = useState(false);
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const { login, currentUser } = useAuth();
+	const { login, currentUser, id, setCurrentUser, isLogged, setIsLogged } =
+		useAuth();
 	const { user, setUser } = useContext(UserContext);
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const placeHolderId = 'dDmmSCBxSIUPLmkYavCw7RFxtTQ2';
 	const [users, setUsers] = useState([]);
 	useEffect(() => {
 		getUsers().then(({ users }) => {
@@ -21,17 +22,23 @@ const Login = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		users.map((user) => {
-			if (user.email_address === emailRef.current.value) {
-				setUser(user);
-				setError('');
-				setLoading(true);
-				login(emailRef.current.value, passwordRef.current.value);
-				navigate('/home');
+			login(emailRef.current.value, passwordRef.current.value);
+			if (currentUser) {
+				if (user.email_address === emailRef.current.value) {
+					if (id === placeHolderId) {
+						setIsLogged(true);
+						setLoading(true);
+						setUser(user);
+						navigate('/home');
+					} else {
+						setIsLogged(false);
+						alert('Wrong Details');
+						navigate('/');
+					}
+				}
 			}
-			setLoading(false);
 		});
 	};
-
 	return (
 		<StyledLogin>
 			<form onSubmit={handleSubmit}>

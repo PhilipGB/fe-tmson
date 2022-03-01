@@ -20,9 +20,11 @@ const Register = () => {
 	const passwordRef = useRef();
 	const { signUp, currentUser } = useAuth();
 	const navigate = useNavigate();
+	const id = 'agLS9wrzWRUE64NGNfKqIrocBTG2';
 
 	const handleChange = (e) => {
 		setUser({
+			firebase_id: id,
 			username: usernameRef.current.value,
 			first_name: firstNameRef.current.value,
 			last_name: lastNameRef.current.value,
@@ -37,9 +39,10 @@ const Register = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		postUser(user);
-		signUp(emailRef.current.value, passwordRef.current.value);
-		navigate('/home');
+		postUser(user).then(() => {
+			signUp(emailRef.current.value, passwordRef.current.value);
+			navigate('/home');
+		});
 	};
 	return (
 		<StyledRegister>

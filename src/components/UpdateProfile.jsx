@@ -16,9 +16,12 @@ function UpdateProfile() {
 	const addressRef = useRef();
 	const usernameRef = useRef();
 	const passwordRef = useRef();
-	const [currentUser, setCurrentUser] = useState(user);
+	const [currentUser, setCurrentUser] = useState('');
+	const id = 'agLS9wrzWRUE64NGNfKqIrocBTG2';
+
 	const handleChange = (e) => {
 		setCurrentUser({
+			firebase_id: id,
 			username: usernameRef.current.value,
 			first_name: firstNameRef.current.value,
 			last_name: lastNameRef.current.value,

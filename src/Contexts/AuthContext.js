@@ -6,7 +6,7 @@ import {
 	onAuthStateChanged,
 	sendPasswordResetEmail,
 	signOut,
-	getIdToken,
+	getIdTokenResult,
 } from 'firebase/auth';
 const AuthContext = createContext();
 
@@ -15,13 +15,16 @@ export const useAuth = () => {
 };
 export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState('');
+	const [isLogged, setIsLogged] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [id, setId] = useState('');
 
+	const placeHolderId = 'Not an id';
 	const userId = currentUser
-		? currentUser.getIdTokenResult().then((res) => {
-				return res;
+		? currentUser.getIdTokenResult().then(({ claims }) => {
+				setId(claims.user_id);
 		  })
-		: '';
+		: placeHolderId;
 
 	const signUp = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
@@ -53,7 +56,10 @@ export function AuthProvider({ children }) {
 		login,
 		logout,
 		resetPassword,
-		userId,
+		id,
+
+		isLogged,
+		setIsLogged,
 	};
 	return (
 		<AuthContext.Provider value={value}>
