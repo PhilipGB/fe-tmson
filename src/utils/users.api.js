@@ -33,3 +33,9 @@ export const patchUser = (username, user) => {
 			console.log(err.response.data);
 		});
 };
+
+export const getTasks = () => {
+	return tmsonApi.get('/tasks').then(({ data }) => {
+		return data.tasks;
+	});
+};

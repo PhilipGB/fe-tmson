@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
-import { getUsers } from '../utils/api';
+import { getUsers } from '../utils/users.api';
 function Profile() {
 	const { user, setUser } = useContext(UserContext);
 

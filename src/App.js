@@ -13,6 +13,7 @@ import { AuthProvider } from './Contexts/AuthContext';
 import { UserContext } from './Contexts/UserContext';
 import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
+import Map from './components/Map';
 function App() {
 	const [user, setUser] = useState({
 		username: '',
@@ -34,6 +35,7 @@ function App() {
 					<Routes location={location} key={location.pathname}>
 						<Route element={<PrivateRoutes />}>
 							<Route path="/home" element={<Home />} />
+							<Route path="/map" element={<Map />} />
 							<Route path="/create" element={<CreateJob />} />
 							<Route path="/profile" element={<Profile />} />
 							<Route path="/profile/:username" element={<UpdateProfile />} />

@@ -27,18 +27,23 @@ const Nav = () => {
 				<div></div>
 				<div></div>
 			</StyledHamburger>
-			{isLogged ? (
+			{currentUser && isLogged ? (
 				<h3 className="welcome-msg"> Hello {user.first_name}</h3>
 			) : (
 				''
 			)}
-			{isLogged ? (
+			{isLogged && currentUser ? (
 				<Link to="/profile">
 					<button className="profile-btn">Your Profile</button>
 				</Link>
 			) : (
 				''
 			)}
+			{/* {isLogged ? (
+				<img className="profile-img-nav" src={user.avatar_url} />
+			) : (
+				''
+			)} */}
 			<StyledMenu
 				animate={isOpen ? 'open' : 'closed'}
 				variants={variants}
@@ -91,6 +96,15 @@ const StyledNav = styled(motion.nav)`
 	.welcome-msg {
 		position: absolute;
 		left: 90px;
+	}
+	.profile-img-nav {
+		position: absolute;
+		margin: 10px;
+		right: 260px;
+		width: 8%;
+		border: 1px solid black;
+		border-radius: 50px;
+		background-color: black;
 	}
 `;
 const StyledMenu = styled(motion.div)`

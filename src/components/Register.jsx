@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
 import { UserContext } from '../Contexts/UserContext';
-import { postUser } from '../utils/api';
+import { postUser } from '../utils/users.api';
 const Register = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ const Register = () => {
 	const passwordRef = useRef();
 	const { signUp, currentUser } = useAuth();
 	const navigate = useNavigate();
-	const id = 'agLS9wrzWRUE64NGNfKqIrocBTG2';
+	const id = 'Qn5aXPnHq6VvA6IMGuWh9DYKzT82';
 
 	const handleChange = (e) => {
 		setUser({

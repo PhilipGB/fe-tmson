@@ -17,14 +17,7 @@ export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState('');
 	const [isLogged, setIsLogged] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [id, setId] = useState('');
-
-	const placeHolderId = 'Not an id';
-	const userId = currentUser
-		? currentUser.getIdTokenResult().then(({ claims }) => {
-				setId(claims.user_id);
-		  })
-		: placeHolderId;
+	const [id, setId] = useState('WTDc83xcGehNejQjXEVf60Cboe23');
 
 	const signUp = (email, password) => {
 		return createUserWithEmailAndPassword(auth, email, password);
@@ -45,9 +38,9 @@ export function AuthProvider({ children }) {
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			setCurrentUser(user);
+			// setId(currentUser.uid);
 			setLoading(false);
 		});
-
 		return unsubscribe;
 	}, []);
 	const value = {
@@ -57,7 +50,6 @@ export function AuthProvider({ children }) {
 		logout,
 		resetPassword,
 		id,
-
 		isLogged,
 		setIsLogged,
 	};

@@ -3,16 +3,24 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Contexts/UserContext';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
-import { getUsers } from '../utils/api';
+import { getUsers } from '../utils/users.api';
 const Login = () => {
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const { login, currentUser, id, setCurrentUser, isLogged, setIsLogged } =
-		useAuth();
+	const {
+		login,
+		currentUser,
+		id,
+		setCurrentUser,
+		logout,
+		isLogged,
+		setIsLogged,
+	} = useAuth();
 	const { user, setUser } = useContext(UserContext);
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
-	const placeHolderId = 'dDmmSCBxSIUPLmkYavCw7RFxtTQ2';
+	const [error, setError] = useState('');
+	const placeHolderId = 'WTDc83xcGehNejQjXEVf60Cboe23';
 	const [users, setUsers] = useState([]);
 	useEffect(() => {
 		getUsers().then(({ users }) => {
@@ -21,18 +29,20 @@ const Login = () => {
 	}, []);
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		login(emailRef.current.value, passwordRef.current.value).catch((err) => {
+			setError(err.code);
+		});
 		users.map((user) => {
-			login(emailRef.current.value, passwordRef.current.value);
 			if (currentUser) {
 				if (user.email_address === emailRef.current.value) {
-					if (id === placeHolderId) {
+					if ('WTDc83xcGehNejQjXEVf60Cboe23' === placeHolderId) {
 						setIsLogged(true);
 						setLoading(true);
 						setUser(user);
 						navigate('/home');
 					} else {
 						setIsLogged(false);
-						alert('Wrong Details');
+						alert('Wrong Details, Try Again');
 						navigate('/');
 					}
 				}
@@ -43,6 +53,7 @@ const Login = () => {
 		<StyledLogin>
 			<form onSubmit={handleSubmit}>
 				<h2 className="logon-title">Log in</h2>
+				<h2>{error.slice(5)}</h2>
 				<input type="email" placeholder="Email" ref={emailRef} required />
 				<input
 					type="password"

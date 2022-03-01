@@ -2,13 +2,12 @@ import firebase from 'firebase/compat/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAaWP74_2jG9sThqYU3SDQeiuz2ZB9vH4E',
-	authDomain: 'auth-tmson.firebaseapp.com',
-	projectId: 'auth-tmson',
-	storageBucket: 'auth-tmson.appspot.com',
-	messagingSenderId: '1047233143850',
-	appId: '1:1047233143850:web:cc9444b998ee8b453b0f53',
-	measurementId: 'G-NCX060K2QY',
+	apiKey: 'AIzaSyAiatXKDUJYYlfGwIlnHo7xKLf4JQrtvgA',
+	authDomain: 'tmson-skills-app.firebaseapp.com',
+	projectId: 'tmson-skills-app',
+	storageBucket: 'tmson-skills-app.appspot.com',
+	messagingSenderId: '76711674237',
+	appId: '1:76711674237:web:dcfd45f76d9a076953cc14',
 };
 
 const app = firebase.initializeApp(firebaseConfig);

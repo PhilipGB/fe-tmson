@@ -3,10 +3,10 @@ import { useAuth } from '../Contexts/AuthContext';
 import { Route, useNavigate, Outlet } from 'react-router-dom';
 import Login from './Login';
 function PrivateRoutes() {
-	const { currentUser } = useAuth();
+	const { currentUser, isLogged } = useAuth();
 	const navigate = useNavigate();
 
-	return currentUser ? <Outlet /> : <Login />;
+	return isLogged ? <Outlet /> : <Login />;
 }
 
 export default PrivateRoutes;
