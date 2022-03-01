@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getSearchResults } from "../Utils/api";
+import SearchBar from "./SearchBar";
+import { Link } from 'react-router-dom';
+
 
 
 const SearchResults = (props) => {
@@ -8,6 +11,7 @@ const SearchResults = (props) => {
 const { search } = useLocation(); 
 const [searchResults, setSearchResults] = useState([])
 
+console.log(search)
 
 useEffect(() => {
     getSearchResults(search).then((searchFromApi) => {
@@ -15,21 +19,20 @@ useEffect(() => {
     })
   }, [search])
 
-  console.log(searchResults.results)
-
   return (
     <main>
+      <SearchBar />
       <h1>Search Results:</h1>
       <ul>
-          {searchResults.results.map(results => {
+          {searchResults && searchResults.map(results => {
               console.log(results)
               return (
-                  <li> 
+                  <li key={results.task_id}> 
                       <p>Search result: {results.task_name}</p>
                       <p>Skill category: {results.skill_category}</p>
                       <p>Skill subcategory: {results.skill_subcategory}</p>
                       <img src={results.thumbnail_image_url}/>
-                      <p> See more.... link here to job description page</p>
+                      <Link key={results.task_id} to={`/tasks/${results.task_id}`}> See more... </Link>
                     </li>
               )
           })}
