@@ -5,6 +5,7 @@ const tasksApi = axios.create({
 });
 
 export const postNewTask = (task) => {
+  console.log(task);
   return tasksApi
     .post('/tasks', task)
     .then(({ data }) => {
@@ -22,7 +23,7 @@ export const getSkills = () => {
 };
 
 export const getSkillsSubCat = (category) => {
-  return tasksApi.get(`/skills/${category}`).then(({ data }) => {
+  return tasksApi.get(`/skills/categories/${category}`).then(({ data }) => {
     return data.skills;
   });
 };
