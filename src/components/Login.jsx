@@ -43,6 +43,7 @@ const Login = () => {
 					} else {
 						setIsLogged(false);
 						alert('Wrong Details, Try Again');
+						logout();
 						navigate('/');
 					}
 				}

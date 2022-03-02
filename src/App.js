@@ -16,6 +16,7 @@ import UpdateProfile from './components/UpdateProfile';
 import Map from './components/Map';
 function App() {
 	const [user, setUser] = useState({
+		user_id: null,
 		username: '',
 		first_name: '',
 		last_name: '',

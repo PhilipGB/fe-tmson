@@ -1,7 +1,27 @@
 .leaflet-container {
     width: 70%;
-    height: 70vh;
-    margin: auto;
+    height: 82vh;
+  display: flex;
+  
     border-radius: 20px;
     top: 70px;
   }
+
+.task-disc{
+  
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 1px;
+  top: 190px;
+  margin: 20px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  width: 25%;
+}
+
+.task-disc > img {
+  width: 20%;
+  border: 2px solid black;
+  border-radius: 50px;
+}

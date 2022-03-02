@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
-import { getUsers, patchUser } from '../utils/users.api';
+import { getUsersByUserName, patchUser } from '../utils/users.api';
 function UpdateProfile() {
 	const emailRef = useRef();
 	const { user, setUser } = useContext(UserContext);
@@ -17,10 +17,12 @@ function UpdateProfile() {
 	const usernameRef = useRef();
 	const passwordRef = useRef();
 	const [currentUser, setCurrentUser] = useState('');
-	const id = 'agLS9wrzWRUE64NGNfKqIrocBTG2';
+
+	const id = 'WTDc83xcGehNejQjXEVf60Cboe23';
 
 	const handleChange = (e) => {
 		setCurrentUser({
+			user_id: user.user_id,
 			firebase_id: id,
 			username: usernameRef.current.value,
 			first_name: firstNameRef.current.value,
@@ -35,6 +37,10 @@ function UpdateProfile() {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		getUsersByUserName(user.username).then((user) => {
+			// setUserId(user.user_id);
+		});
+		// console.log(userId);
 		patchUser(user.username, currentUser).then((res) => {
 			setUser(currentUser);
 		});
