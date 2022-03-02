@@ -15,9 +15,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intersection-observer": "^8.33.1",
+    "react-redux": "^7.2.6",
     "react-leaflet": "^3.2.5",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "redux": "^4.1.2",
     "styled-components": "^5.3.3",
     "uk-postcodes-node": "^0.2.3",
     "web-vitals": "^2.1.4"
