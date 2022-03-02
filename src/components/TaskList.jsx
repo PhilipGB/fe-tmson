@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {getTasks} from '../Utils/api'
+import {getTasks} from '../Utils/api-filterjobs'
 import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";

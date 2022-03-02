@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { getSearchResults } from "../Utils/api";
+import { getSearchResults } from "../Utils/api-filterjobs";
 import SearchBar from "./SearchBar";
 import { Link } from 'react-router-dom';
 
