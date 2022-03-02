@@ -1,3 +1,4 @@
+import Nav from './Nav';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -148,10 +149,6 @@ const StyledCreateJob = styled.div`
 
   #create {
     display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
-    border-radius: 1rem;
-    border: 1px black solid;
     margin: 0.5rem;
   }
 `;

@@ -3,81 +3,84 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import images from '../images';
 import { useRef, useEffect, useState } from 'react';
+import { StyledJobCard } from '../styles';
 
 const Carousel = () => {
-	const [width, setWidth] = useState(0);
-	const carousel = useRef();
+  const [width, setWidth] = useState(0);
+  const carousel = useRef();
 
-	useEffect(() => {
-		setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-	}, []);
+  useEffect(() => {
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+  }, []);
 
-	return (
-		<StyledCarousel>
-			<Link to="/create" id="create-job">
-				Create Job
-			</Link>
-			<button>
-				<Link to="/map">Map of Jobs</Link>
-			</button>
+  return (
+    <StyledCarousel>
+      <Link to='/create' id='create-job'>
+        Create Job
+      </Link>
+      <button>
+        <Link to='/map'>Map of Jobs</Link>
+      </button>
 
-			<motion.div
-				ref={carousel}
-				className="carousel"
-				whileTap={{ cursor: 'grabbing' }}
-			>
-				<motion.div
-					drag="x"
-					dragConstraints={{ right: 0, left: -width }}
-					className="inner-carousel"
-				>
-					{images.map((image) => {
-						return (
-							<motion.div className="item" key={image}>
-								<img src={image} />
-							</motion.div>
-						);
-					})}
-				</motion.div>
-			</motion.div>
-		</StyledCarousel>
-	);
+      <motion.div
+        ref={carousel}
+        className='carousel'
+        whileTap={{ cursor: 'grabbing' }}
+      >
+        <motion.div
+          drag='x'
+          dragConstraints={{ right: 0, left: -width }}
+          className='inner-carousel'
+        >
+          {images.map((image) => {
+            return (
+              <motion.div className='item' key={image}>
+                <img src={image} />
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </motion.div>
+    </StyledCarousel>
+  );
 };
 
 const StyledCarousel = styled.div`
-	margin: 0 20%;
+  margin: 0 15%;
 
-	#create-job {
-		display: inline-block;
-		padding: 0.6rem 1.5rem;
-		background-color: #e7e7e7;
-		border-radius: 1rem;
-		border: 1px black solid;
-		margin: 0.5rem;
-	}
+  #create-job {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid white;
+    border-radius: 0.5rem;
+    margin-left: 3.5%;
+    text-decoration: none;
+  }
 
-	.item {
-		min-height: 40rem;
-		min-width: 30rem;
-		padding: 40px;
-	}
+  .item {
+    min-height: 40rem;
+    min-width: 30rem;
+    padding: 40px;
+  }
 
-	.item img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		border-radius: 1rem;
-		pointer-events: none;
-	}
+  .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    pointer-events: none;
+  }
 
-	.inner-carousel {
-		display: flex;
-	}
+  .inner-carousel {
+    display: flex;
+  }
 
-	.carousel {
-		cursor: grab;
-		overflow: hidden;
-	}
+  .carousel {
+    cursor: grab;
+    overflow: hidden;
+  }
 `;
 
 export default Carousel;

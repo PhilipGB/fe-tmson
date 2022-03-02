@@ -5,14 +5,24 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        font-family: 'Cuprum', sans-serif;
+        text-transform: uppercase;
+        
     }
 
-    button{
-        background-color: none;
-        padding: 0.5rem 1rem;
-        border-radius: 0.4rem;   
+    a, button{
+      
         cursor: pointer;
     }
+    .btn {
+        padding: 1rem 2rem;
+        background-color: black;
+        color: white;
+        border: 0.15rem solid white;
+        border-radius: 0.5rem;  
+        text-decoration: none;
+    }
+
 
     
 `;
