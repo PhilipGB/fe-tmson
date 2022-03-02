@@ -4,8 +4,6 @@ import { getTasks, getTasksById } from '../utils/users.api';
 const postcodes = require('node-postcodes.io');
 
 function Map() {
-  // const [taskId, setTaskId] = useState(null);
-  // const [newPostcodes, setNewPostcodes] = useState('');
   const [task, setTask] = useState();
   const [latLong, setLatLong] = useState([]);
 
@@ -77,7 +75,7 @@ function Map() {
             <Marker
               position={[task[0], task[1]]}
               eventHandlers={{
-                click: (e) => {
+                click: () => {
                   handleTaskclick(task[2]);
                 },
               }}
