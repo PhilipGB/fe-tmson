@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { getTasks, getTasksById } from '../utils/users.api';
+import { getTasks, getTasksById } from '../Utils/users.api';
 const postcodes = require('node-postcodes.io');
 
 function Map() {

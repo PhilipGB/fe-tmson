@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
 import { UserContext } from '../Contexts/UserContext';
-import { postUser } from '../utils/users.api';
+import { postUser } from '../Utils/users.api';
 const Register = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);

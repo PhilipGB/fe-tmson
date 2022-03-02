@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../Contexts/UserContext';
 import styled from 'styled-components';
 import { useAuth } from '../Contexts/AuthContext';
-import { getUsers } from '../utils/users.api';
+import { getUsers } from '../Utils/users.api';
 const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
