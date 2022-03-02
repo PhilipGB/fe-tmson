@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Nav from './components/Nav';
 import Register from './components/Register';
-import { getSkills } from '../src/Utils/api';
+import { getSkills } from '../src/Utils/api-createJob';
 
 function App() {
   const location = useLocation();

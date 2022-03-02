@@ -2,16 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useState, useEffect } from 'react'
-import { getSkills, postNewTask, getSkillsSubCat } from "../Utils/api";
+import { getSkills, postNewTask, getSkillsSubCat } from "../Utils/api-createJob"
 
 
 const CreateJob = (props) => {
 
+  // do i need to pass category list as props or can i run two useEffect in same page?
+
   const {categoryList} = props
   const [subCategoryList, setSubCategoryList, ] = useState([])
   const [form, setForm] = useState({
-    taksName: '',
-    category: 'TBC',
+    taskName: '',
+    category: 'languages',
     subCategory: '',
     description: '',
     startTime: '',
@@ -24,10 +26,10 @@ const CreateJob = (props) => {
 const handleSubmit = (e) => {
   e.preventDefault()
   const postedTask = {
-    //"task": taskName,
+    "task_name": form.taskName,
     "booker_id": 1,
     "skill_id": parseInt(form.subCategory),
-    //"description": description,
+    "task_description": form.description,
     "start_time": form.startTime,
     "end_time": form.endTime,
     "location": form.location
@@ -36,10 +38,12 @@ const handleSubmit = (e) => {
   postNewTask(postedTask)
 }
 
+// introduce a state that changes when category selected? To then trigger useEffect?
 useEffect(() => {
-  getSkillsSubCat(form.category).then((subSkillsFromApi) => {
-    setSubCategoryList(subSkillsFromApi)
-  })
+    getSkillsSubCat(form.category).then((subSkillsFromApi) => {
+      setSubCategoryList(subSkillsFromApi)
+    })
+    
 },[form.category])
 
 
