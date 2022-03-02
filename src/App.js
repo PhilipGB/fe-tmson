@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, useParams } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './App.css';
 import CreateJob from './components/CreateJob';
