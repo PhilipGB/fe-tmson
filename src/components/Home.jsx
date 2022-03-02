@@ -1,17 +1,18 @@
-import React from "react";
-import Carousel from "./Carousel";
-import CreateJob from "./CreateJob";
-import Nav from "./Nav";
-import SearchBar from "./SearchBar";
-import styled from "styled-components";
+import React from 'react';
+import Carousel from './Carousel';
+import CreateJob from './CreateJob';
+import Nav from './Nav';
+import SearchBar from './SearchBar';
+import styled from 'styled-components';
+import TaskList from './TaskList';
 
 const Home = () => {
   return (
     <StyledHome>
-      <Nav />
+      {/* <Nav /> */}
       <SearchBar />
       <Carousel />
-      <div className="footer">
+      <div className='footer'>
         <h2>@2022 The Mutated States Of Northcodia</h2>
       </div>
     </StyledHome>

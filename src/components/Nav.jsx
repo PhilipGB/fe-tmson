@@ -1,46 +1,78 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import {
   animationLinks,
   hamburgerAnimation,
   lineOne,
   lineThree,
   lineTwo,
-} from "../animation";
+} from '../animation';
+import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
+import { UserContext } from '../Contexts/UserContext';
+import { motion } from 'framer-motion';
+import { useAuth } from '../Contexts/AuthContext';
+import { Link } from 'react-router-dom';
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: '-100%' },
+};
 
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout, currentUser, isLogged, setIsLogged } = useAuth();
+  const { user, setUser } = useContext(UserContext);
+
+  const handleLogOut = () => {
+    if (currentUser) {
+      logout();
+      setIsLogged(false);
+      setIsOpen(false);
+    }
+  };
 
   return (
     <StyledNav>
       <StyledHamburger onClick={() => setIsOpen((isOpen) => !isOpen)}>
         <motion.div
-          animate={isOpen ? "open" : ""}
+          animate={isOpen ? 'open' : ''}
           variants={lineOne}
         ></motion.div>
         <motion.div
-          animate={isOpen ? "open" : "closed"}
+          animate={isOpen ? 'open' : 'closed'}
           variants={lineTwo}
         ></motion.div>
         <motion.div
-          animate={isOpen ? "open" : ""}
+          animate={isOpen ? 'open' : ''}
           variants={lineThree}
         ></motion.div>
       </StyledHamburger>
+      {currentUser && isLogged ? (
+        <h3 className='welcome-msg'> Hello {user.first_name}</h3>
+      ) : (
+        ''
+      )}
+      {/* {isLogged ? (
+				<img className="profile-img-nav" src={user.avatar_url} />
+			) : (
+				''
+			)} */}
       <StyledMenu
-        animate={isOpen ? "open" : "closed"}
+        animate={isOpen ? 'open' : 'closed'}
         variants={hamburgerAnimation}
       >
         <ul>
-          <motion.li
-            variants={animationLinks}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            My Account
-          </motion.li>
+          {isLogged && currentUser ? (
+            <Link to='/profile' onClick={() => setIsOpen(false)}>
+              <motion.li
+                variants={animationLinks}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                My Account
+              </motion.li>
+            </Link>
+          ) : (
+            ''
+          )}
           <motion.li
             variants={animationLinks}
             whileHover={{ scale: 1.1 }}
@@ -55,18 +87,24 @@ const Nav = () => {
           >
             Jobs
           </motion.li>
-          <Link to="/">
-            <motion.li
-              variants={animationLinks}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              Logout
-            </motion.li>
-          </Link>
+          {isLogged ? (
+            <Link to='/' onClick={handleLogOut}>
+              <motion.li
+                variants={animationLinks}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Logout
+              </motion.li>
+            </Link>
+          ) : (
+            ''
+          )}
         </ul>
       </StyledMenu>
-      <h1>Logo</h1>
+      <Link to='/home'>
+        <h1>Logo</h1>
+      </Link>
     </StyledNav>
   );
 };

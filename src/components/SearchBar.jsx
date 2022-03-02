@@ -1,30 +1,39 @@
-import React from "react";
-import styled from "styled-components";
-import { device } from "../responsive";
+import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { device } from '../responsive';
 
 const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  console.log(searchTerm);
+  // add function to search button that takes to new page - showing filtered searches only.
+
   return (
     <StyledForm>
-      <div id="sort-filter">
-        <select name="" id="">
-          <option value="filter" disabled="disabled">
-            Filter
-          </option>
-          <option value="filter">Distance</option>
-          <option value="filter">Availability</option>
-        </select>
-        <select name="" id="">
-          <option value="sort" disabled="disabled">
-            Sort By
-          </option>
-          <option value="sort">Advert Age</option>
-          <option value="sort">Rating</option>
-        </select>
-      </div>
-      <div id="search">
-        <input type="text" />
+      <input
+        type='text'
+        value={searchTerm}
+        onInput={(e) => setSearchTerm(e.target.value)}
+      />
+      <select name='' id=''>
+        <option value='filter' disabled='disabled'>
+          Filter
+        </option>
+        <option value='filter'>Distance</option>
+        <option value='filter'>Availability</option>
+      </select>
+      <select name='' id=''>
+        <option value='sort' disabled='disabled'>
+          Sort By
+        </option>
+        <option value='sort'>Advert Age</option>
+        <option value='sort'>Rating</option>
+      </select>
+      <Link to={`/search-results?q=${searchTerm}`}>
         <button>Search</button>
-      </div>
+      </Link>
     </StyledForm>
   );
 };
