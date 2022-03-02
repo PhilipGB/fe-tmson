@@ -3,10 +3,7 @@ import { auth } from '../firebase';
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
-	onAuthStateChanged,
 	sendPasswordResetEmail,
-	signOut,
-	getIdTokenResult,
 } from 'firebase/auth';
 const AuthContext = createContext();
 

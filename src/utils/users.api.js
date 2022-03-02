@@ -6,7 +6,6 @@ const tmsonApi = axios.create({
 
 export const getUsersByUserName = (username) => {
 	return tmsonApi.get(`/users/${username}`).then(({ data }) => {
-		console.log(data);
 		return data;
 	});
 };
@@ -20,9 +19,7 @@ export const postUser = (user) => {
 	console.log(user);
 	return tmsonApi
 		.post('/users', user)
-		.then(({ data }) => {
-			console.log(data);
-		})
+		.then(({ data }) => {})
 		.catch((err) => {
 			console.log(err.response.data);
 		});

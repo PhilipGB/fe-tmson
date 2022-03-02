@@ -29,10 +29,14 @@ function Map() {
 	const [long, setLong] = useState('');
 	useEffect(() => {
 		getTasks().then((res) => {
+			const postcodesRegx = [];
 			res.map((task) => {
 				setTaskId(task.task_id);
-				const postcodesRegx = task.location.match(
-					/^(GIR 0AA)|((([A-Z][0-9]{1,2})|(([A-Z][A-HJ-Y][0-9]{1,2})|(([A-Z][0-9][A-Z])|([A-Z][A-HJ-Y][0-9]?[A-Z])))) [0-9][A-Z]{2})$/g
+
+				postcodesRegx.push(
+					task.location.match(
+						/^(GIR 0AA)|((([A-Z][0-9]{1,2})|(([A-Z][A-HJ-Y][0-9]{1,2})|(([A-Z][0-9][A-Z])|([A-Z][A-HJ-Y][0-9]?[A-Z])))) [0-9][A-Z]{2})$/g
+					)
 				);
 				setNewPostcodes(postcodesRegx);
 			});
@@ -54,12 +58,10 @@ function Map() {
 			});
 		});
 	}, []);
-	if (taskId) {
-		postcodes.lookup(newPostcodes).then((res) => {
-			setLat(res.result[0].result.latitude);
-			setLong(res.result[0].result.longitude);
-		});
-	}
+	postcodes.lookup(newPostcodes).then((res) => {
+		setLat(res.result[0].result.latitude);
+		setLong(res.result[0].result.longitude);
+	});
 
 	return (
 		<div>
