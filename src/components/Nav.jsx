@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
 import { motion } from 'framer-motion';
 import { useAuth } from '../Contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const variants = {
 	open: { opacity: 1, x: 0 },
 	closed: { opacity: 0, x: '-100%' },
@@ -13,10 +13,11 @@ const Nav = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const { logout, currentUser, isLogged, setIsLogged } = useAuth();
 	const { user, setUser } = useContext(UserContext);
-
+	const navigate = useNavigate();
 	const handleLogOut = () => {
 		if (currentUser) {
 			logout();
+			navigate('/');
 			setIsLogged(false);
 		}
 	};

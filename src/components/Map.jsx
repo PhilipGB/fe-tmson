@@ -61,6 +61,7 @@ function Map() {
 	postcodes.lookup(newPostcodes).then((res) => {
 		setLat(res.result[0].result.latitude);
 		setLong(res.result[0].result.longitude);
+		console.log(lat, long);
 	});
 
 	return (
