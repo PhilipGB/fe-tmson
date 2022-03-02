@@ -8,7 +8,7 @@ const Login = () => {
       <form>
         <input type="text" placeholder="Username" />
         <input type="text" placeholder="Password" />
-        <Link to="/home" id="login">
+        <Link to="/home" className="btn" id="login">
           Login
         </Link>
         <p>
@@ -44,10 +44,6 @@ const StyledLogin = styled.div`
 
   #login {
     display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
-    border-radius: 1rem;
-    border: 1px black solid;
     margin: 0.5rem;
   }
 `;

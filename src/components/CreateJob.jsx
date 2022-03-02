@@ -1,21 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Nav from "./Nav";
 
 const CreateJob = () => {
   return (
-    <StyledCreateJob>
-      <form>
-        <h1>Create Job</h1>
-        <input type="text" placeholder="Job Name: " />
-        <input type="text" placeholder="Description: " />
-        <input type="text" placeholder="Hours: " />
-        <input type="text" placeholder="Location: " />
-        <Link to="/home" id="create">
-          Create
-        </Link>
-      </form>
-    </StyledCreateJob>
+    <>
+      <Nav />
+      <StyledCreateJob>
+        <form>
+          <h1>Create Job</h1>
+          <input type="text" placeholder="Job Name: " />
+          <input type="text" placeholder="Description: " />
+          <input type="text" placeholder="Hours: " />
+          <input type="text" placeholder="Location: " />
+          <Link to="/home" className="btn" id="create">
+            Create
+          </Link>
+        </form>
+      </StyledCreateJob>
+    </>
   );
 };
 
@@ -49,10 +53,6 @@ const StyledCreateJob = styled.div`
 
   #create {
     display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
-    border-radius: 1rem;
-    border: 1px black solid;
     margin: 0.5rem;
   }
 `;

@@ -11,7 +11,7 @@ const Register = () => {
         <input type="text" placeholder="Email" />
         <input type="text" placeholder="Username" />
         <input type="text" placeholder="Password" />
-        <Link to="/home" id="register">
+        <Link to="/home" className="btn" id="register">
           Register
         </Link>
       </form>
@@ -49,10 +49,6 @@ const StyledRegister = styled.div`
 
   #register {
     display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
-    border-radius: 1rem;
-    border: 1px black solid;
     margin: 0.5rem;
   }
 `;
