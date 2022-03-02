@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
 import './App.css';
 import CreateJob from './components/CreateJob';
@@ -7,6 +8,8 @@ import GlobalStyle from './components/GlobalStyle';
 import Home from './components/Home';
 import Login from './components/Login';
 import Nav from './components/Nav';
+import TaskList from './components/TaskList';
+import SearchResults from './components/SearchResultsPage';
 import PrivateRoutes from './components/PrivateRoutes';
 import Register from './components/Register';
 import { AuthProvider } from './Contexts/AuthContext';
@@ -57,6 +60,8 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/forget-password' element={<ForgetPassword />} />
+            <Route path='/tasks' element={<TaskList />} />
+            <Route path='/search-results' element={<SearchResults />} />
           </Routes>
           <GlobalStyle />
         </AuthProvider>
