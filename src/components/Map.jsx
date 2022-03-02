@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { getTasks, getTasksById } from '../utils/users.api';
+import { getTasks, getTasksById } from '../Utils/users.api';
 const postcodes = require('node-postcodes.io');
 
 function Map() {
@@ -30,16 +30,25 @@ function Map() {
 	useEffect(() => {
 		getTasks().then((res) => {
 			const postcodesRegx = [];
-			res.map((task) => {
-				setTaskId(task.task_id);
+			res
+				.map((task) => {
+					setTaskId(task.task_id);
 
-				postcodesRegx.push(
-					task.location.match(
-						/^(GIR 0AA)|((([A-Z][0-9]{1,2})|(([A-Z][A-HJ-Y][0-9]{1,2})|(([A-Z][0-9][A-Z])|([A-Z][A-HJ-Y][0-9]?[A-Z])))) [0-9][A-Z]{2})$/g
-					)
-				);
-				setNewPostcodes(postcodesRegx);
-			});
+					postcodesRegx.push(
+						task.location.match(
+							/^(GIR 0AA)|((([A-Z][0-9]{1,2})|(([A-Z][A-HJ-Y][0-9]{1,2})|(([A-Z][0-9][A-Z])|([A-Z][A-HJ-Y][0-9]?[A-Z])))) [0-9][A-Z]{2})$/g
+						)
+					);
+					setNewPostcodes(postcodesRegx);
+				})
+				.then(() => {
+					postcodes.lookup(newPostcodes[0]).then((res) => {
+						console.log(res);
+						setLat(res.result[0].result.latitude);
+						setLong(res.result[0].result.longitude);
+					});
+				});
+
 			getTasksById(taskId).then((res) => {
 				setTask({
 					location: res.task.location,
@@ -58,10 +67,6 @@ function Map() {
 			});
 		});
 	}, []);
-	postcodes.lookup(newPostcodes).then((res) => {
-		setLat(res.result[0].result.latitude);
-		setLong(res.result[0].result.longitude);
-	});
 
 	return (
 		<div>
@@ -71,7 +76,6 @@ function Map() {
 				<h4>
 					Name: {task.first_name} {task.last_name}
 				</h4>
-
 				<h4>Location: {task.location}</h4>
 				<h4>Username: {task.username}</h4>
 				<h4>Email: {task.email_address}</h4>
