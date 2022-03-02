@@ -1,96 +1,86 @@
-<<<<<<< HEAD
-.JDtaskThumbnail{
-    grid-area: JDtaskThumbnail;
-    justify-self: center;
+.JDtaskThumbnail {
+  grid-area: JDtaskThumbnail;
+  justify-self: center;
 }
 
-.JDcategory{
-    grid-area: JDcategory;
+.JDcategory {
+  grid-area: JDcategory;
 }
 
-.JDcategory2{
-    grid-area: JDcategory2;
+.JDcategory2 {
+  grid-area: JDcategory2;
 }
 
-
-.JDsubcategory{
-    grid-area: JDsubcategory;
+.JDsubcategory {
+  grid-area: JDsubcategory;
 }
 
-.JDsubcategory2{
-    grid-area: JDsubcategory2;
+.JDsubcategory2 {
+  grid-area: JDsubcategory2;
 }
 
-
-.JDlocation{
-    grid-area: JDlocation;
+.JDlocation {
+  grid-area: JDlocation;
 }
 
-.JDlocation2{
-    grid-area: JDlocation2;
+.JDlocation2 {
+  grid-area: JDlocation2;
 }
 
-
-.JDskillDescription{
-    grid-area: JDskillDescription;
+.JDskillDescription {
+  grid-area: JDskillDescription;
 }
 
-.JDskillDescription2{
-    grid-area: JDskillDescription2;
+.JDskillDescription2 {
+  grid-area: JDskillDescription2;
 }
 
-
-.JDabout{ 
-    grid-area: JDabout;
+.JDabout {
+  grid-area: JDabout;
 }
 
-.JDabout2{ 
-    grid-area: JDabout2;
+.JDabout2 {
+  grid-area: JDabout2;
 }
 
-
-.JDrequestedBy{
-    grid-area: JDrequestedBy;
+.JDrequestedBy {
+  grid-area: JDrequestedBy;
 }
 
-.JDrequestedBy2{
-    grid-area: JDrequestedBy2;
+.JDrequestedBy2 {
+  grid-area: JDrequestedBy2;
 }
 
-.JDbookTaskButton{
-    grid-area: JDbookTaskButton;
+.JDbookTaskButton {
+  grid-area: JDbookTaskButton;
 }
 
 .grid-container {
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    grid-template-areas: 
-
-    "JDtaskThumbnail JDtaskThumbnail"
-    "JDcategory JDcategory2"
-    "JDsubcategory JDsubcategory2"
-    "JDlocation JDlocation2"
-    "JDskillDescription JDskillDescription2"
-    "JDabout JDabout2"
-    "JDrequestedBy JDrequestedBy2"
-    
-};
-=======
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'JDtaskThumbnail JDtaskThumbnail'
+    'JDcategory JDcategory2'
+    'JDsubcategory JDsubcategory2'
+    'JDlocation JDlocation2'
+    'JDskillDescription JDskillDescription2'
+    'JDabout JDabout2'
+    'JDrequestedBy JDrequestedBy2';
+}
 .leaflet-container {
-    width: 70%;
-    height: 82vh;
+  width: 70%;
+  height: 82vh;
   display: flex;
-  
-    border-radius: 20px;
-    top: 70px;
-  }
 
-.task-disc{
-  
+  border-radius: 20px;
+  top: 70px;
+}
+
+.task-disc {
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -107,4 +97,3 @@
   border: 2px solid black;
   border-radius: 50px;
 }
->>>>>>> main
