@@ -18,7 +18,6 @@ const JobBookingProcess = () => {
 
   const handleBookingClick = () => {
     body.provider_id = new_provider;
-    body.task_booking_confirmed = 'true';
 
     setErr(null);
     setView('booked view');
