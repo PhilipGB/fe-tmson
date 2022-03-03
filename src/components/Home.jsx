@@ -13,7 +13,7 @@ const Home = () => {
       <SearchBar />
       <Carousel />
       <div className='footer'>
-        <h2>@2022 The Mutated States Of Northcodia</h2>
+        <h2>&copy;2022 The Mutated States Of Northcodia</h2>
       </div>
     </StyledHome>
   );
