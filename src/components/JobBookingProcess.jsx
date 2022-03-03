@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { getJobDescription, patchTaskByID } from '../Api';
 import { useAuth } from '../Contexts/AuthContext';
+import { UserContext } from '../Contexts/UserContext';
 
 const JobBookingProcess = () => {
+  const { user } = useContext(UserContext);
   const { task_id } = useParams();
   const [task, setTask] = useState({});
   const [view, setView] = useState('booking view');
-  const new_provider = 2; // Should this be hard coded?
   const { emailVerify } = useAuth();
+  const new_provider = user.user_id;
 
-  const body = {
-    location: task.location,
-    skill_id: task.skill_id,
-    booker_id: task.booker_id,
-    provider_id: new_provider,
-    start_time: task.start_time,
-    end_time: task.end_time,
-  };
+  const body = { ...task };
 
   const [err, setErr] = useState(null);
 
   const handleBookingClick = () => {
+    body.provider_id = new_provider;
+    body.task_booking_confirmed = 'true';
+
     setErr(null);
     setView('booked view');
     emailVerify();
