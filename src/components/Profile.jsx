@@ -7,7 +7,7 @@ function Profile() {
 
 	return (
 		<StyledRegister>
-			<div>
+			<div className="profile">
 				<h1>Your Profile</h1>
 				<img className="profile-img" src={user.avatar_url} />
 				<p>First Name: {user.first_name}</p>
@@ -33,19 +33,14 @@ const StyledRegister = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	h1 {
-		position: absolute;
-		top: 200px;
-	}
-
-	div {
+	.profile {
 		background-color: aliceblue;
 
 		flex-direction: column;
 		align-items: center;
 		padding: 5rem 7rem;
 		border-radius: 1rem;
-		height: 80%;
+		height: 100%;
 		width: 60%;
 	}
 
