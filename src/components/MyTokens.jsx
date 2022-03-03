@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
+import { mintToken } from '../Utils/api-tokens-new'
 
 
 function MyTokens(props) {
@@ -15,6 +16,9 @@ function MyTokens(props) {
 		username: 'oscarJames24',
 	})
 
+	const mintCoin = () => {
+		mintToken(1, user.user_id)
+	}
 
 	return (
 		<StyledRegister>
@@ -27,13 +31,14 @@ function MyTokens(props) {
 					{tokens && tokens.map(token => {
 						return (
 							<li key={token.token_id}>
-								<h3>Token number: {token.token_id}</h3>
+								<h3>Token# {token.token_id}</h3>
 								<p>Minted on: {token.generated_date}</p>
 								<p>By: Minter No. {token.minter_id}</p>
 							</li>
 						)
 					})}
 				</ul>
+			<button onClick={() => mintCoin()}> Mint New Token </button>
 			</div>
 		</StyledRegister>
 	);

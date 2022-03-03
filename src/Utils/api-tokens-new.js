@@ -46,3 +46,15 @@ export const patchTaskToComplete = (task_id) => {
     return data;
   });
 };
+
+export const mintToken = (minter_id = 1, owner_id) => {
+  console.log(minter_id, owner_id);
+  const mintRequest = {
+    minter_id: minter_id,
+    owner_id: owner_id,
+  };
+  return tasksApi.post('tokens/', mintRequest).then((data) => {
+    console.log(data.token);
+    return data.token;
+  });
+};
