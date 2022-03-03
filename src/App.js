@@ -66,12 +66,12 @@ function App() {
               <Route path="/profile/:username" element={<UpdateProfile />} />
               <Route path="/profile/:username/my-tokens" element={<MyTokens tokens={tokens} />} />
               <Route path="/profile/:username/my-tokens" element={<MyTasks tokens={tokens} />} />
+              <Route path="/tasks" element={<TaskList />} />
+              <Route path="/search-results" element={<SearchResults />} />
             </Route>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forget-password" element={<ForgetPassword />} />
-            <Route path="/tasks" element={<TaskList />} />
-            <Route path="/search-results" element={<SearchResults />} />
           </Routes>
           <GlobalStyle />
         </AuthProvider>
