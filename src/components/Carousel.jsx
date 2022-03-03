@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import images from '../images';
-import { useRef, useEffect, useState } from 'react';
-import { StyledJobCard } from '../styles';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import images from "../images";
+import { useRef, useEffect, useState } from "react";
+import { StyledJobCard } from "../styles";
 
 const Carousel = () => {
   const [width, setWidth] = useState(0);
@@ -15,26 +15,27 @@ const Carousel = () => {
 
   return (
     <StyledCarousel>
-      <Link to='/create' id='create-job'>
+      <Link to="/create" id="create-job">
         Create Job
       </Link>
-      <button>
-        <Link to='/map'>Map of Jobs</Link>
-      </button>
+
+      <Link to="/map" className="btn">
+        Map of Jobs
+      </Link>
 
       <motion.div
         ref={carousel}
-        className='carousel'
-        whileTap={{ cursor: 'grabbing' }}
+        className="carousel"
+        whileTap={{ cursor: "grabbing" }}
       >
         <motion.div
-          drag='x'
+          drag="x"
           dragConstraints={{ right: 0, left: -width }}
-          className='inner-carousel'
+          className="inner-carousel"
         >
           {images.map((image) => {
             return (
-              <motion.div className='item' key={image}>
+              <motion.div className="item" key={image}>
                 <img src={image} />
               </motion.div>
             );
@@ -80,6 +81,10 @@ const StyledCarousel = styled.div`
   .carousel {
     cursor: grab;
     overflow: hidden;
+  }
+
+  .btn {
+    margin-left: 0.5rem;
   }
 `;
 

@@ -1,11 +1,11 @@
-import React, { useContext, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { useAuth } from '../Contexts/AuthContext';
-import { UserContext } from '../Contexts/UserContext';
-import { postUser } from '../utils/users.api';
+import React, { useContext, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { useAuth } from "../Contexts/AuthContext";
+import { UserContext } from "../Contexts/UserContext";
+import { postUser } from "../utils/users.api";
 const Register = () => {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const { user, setUser } = useContext(UserContext);
@@ -20,7 +20,7 @@ const Register = () => {
   const passwordRef = useRef();
   const { signUp, currentUser } = useAuth();
   const navigate = useNavigate();
-  const id = 'Qn5aXPnHq6VvA6IMGuWh9DYKzT82';
+  const id = "Qn5aXPnHq6VvA6IMGuWh9DYKzT82";
 
   const handleChange = (e) => {
     setUser({
@@ -41,90 +41,90 @@ const Register = () => {
     e.preventDefault();
     postUser(user).then(() => {
       signUp(emailRef.current.value, passwordRef.current.value);
-      navigate('/home');
+      navigate("/home");
     });
   };
   return (
     <StyledRegister>
-      <div>
+      <div className="container">
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           {error}
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={firstNameRef}
-            placeholder='First Name'
+            placeholder="First Name"
             required
           />
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={lastNameRef}
-            placeholder='Last Name'
+            placeholder="Last Name"
             required
           />
           <input
             onChange={handleChange}
-            type='email'
+            type="email"
             ref={emailRef}
-            placeholder='Email'
+            placeholder="Email"
             required
           />
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={usernameRef}
-            placeholder='Username'
+            placeholder="Username"
             required
           />
           <input
             onChange={handleChange}
-            type='password'
+            type="password"
             ref={passwordRef}
-            placeholder='Password'
+            placeholder="Password"
             required
           />
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={avatarUrlRef}
-            placeholder='Avatar Url'
+            placeholder="Avatar Url"
             required
           />
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={addressRef}
-            placeholder='Address'
+            placeholder="Address"
             required
           />
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={postcodeRef}
-            placeholder='Postcode'
+            placeholder="Postcode"
             required
           />
           <input
             onChange={handleChange}
-            type='text'
+            type="text"
             ref={bioRef}
-            placeholder='Bio'
+            placeholder="Bio"
             required
           />
           <input
             onChange={handleChange}
-            type='date'
+            type="date"
             ref={dobRef}
-            placeholder='Date Of Birth'
+            placeholder="Date Of Birth"
             required
           />
-          <button disabled={loading} type='submit'>
+          <button disabled={loading} className="btn" type="submit">
             Register
           </button>
           <p>
-            Already have an account? Click <Link to='/'>here</Link>
+            Already have an account? Click <Link to="/">here</Link>
           </p>
         </form>
       </div>
@@ -133,39 +133,39 @@ const Register = () => {
 };
 
 const StyledRegister = styled.div`
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  background-color: black;
+  color: white;
 
   h1 {
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin: 1rem 0rem;
   }
 
-  div {
-    margin-top: 2rem;
-
-    background-color: aliceblue;
+  .container {
+    margin: 2rem;
+    border: 0.15rem solid #45b480;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 5rem 7rem;
+    justify-content: flex-start;
+    padding: 10rem 3rem;
     border-radius: 1rem;
-    height: 100%;
-    width: 60%;
+    height: 90%;
+    width: 40%;
   }
   form {
-    background-color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 5rem 7rem;
     border-radius: 1rem;
-    height: 50%;
+    height: 90%;
     width: 100%;
   }
 
@@ -174,16 +174,29 @@ const StyledRegister = styled.div`
     height: 20%;
     margin-bottom: 0.7rem;
     padding: 1rem 1rem;
-    border: 1px solid black;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+    font-size: 1rem;
   }
 
   #register {
     display: inline-block;
     padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
     border-radius: 1rem;
     border: 1px black solid;
     margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    margin: 1rem 0rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3ac2bb;
   }
 `;
 
