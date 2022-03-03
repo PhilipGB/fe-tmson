@@ -76,7 +76,7 @@ const CreateJob = (props) => {
         >
           <option value=''> --- Please select a category </option>
           {categoryList.map((category) => {
-            return <option>{category.slug}</option>;
+            return <option key={category.slug}>{category.slug}</option>;
           })}
         </select>
         <select
@@ -88,7 +88,7 @@ const CreateJob = (props) => {
           <option value=''> --- Please select a sub-category </option>
           {subCategoryList.map((category) => {
             return (
-              <option value={category.skill_id}>
+              <option key={category.skill_id} value={category.skill_id}>
                 {category.skill_subcategory}
               </option>
             );
