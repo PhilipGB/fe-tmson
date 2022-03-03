@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
-import { getUsersByUserName, patchUser } from '../Utils/users.api';
+import { getUsersByUserName, patchUser } from '../utils/users.api';
 function UpdateProfile() {
   const emailRef = useRef();
   const { user, setUser } = useContext(UserContext);
