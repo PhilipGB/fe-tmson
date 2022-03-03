@@ -9,7 +9,6 @@ import TaskList from './TaskList';
 const Home = () => {
   return (
     <StyledHome>
-      {/* <Nav /> */}
       <SearchBar />
       <Carousel />
       <div className='footer'>
@@ -22,7 +21,7 @@ const Home = () => {
 const StyledHome = styled.div`
   overflow: hidden;
   background-color: black;
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   background-position: center;
   background-repeat: no-repeat;

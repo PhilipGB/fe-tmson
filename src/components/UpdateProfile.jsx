@@ -51,8 +51,8 @@ function UpdateProfile() {
   useEffect(() => {}, []);
 
   return (
-    <StyledRegister>
-      <div>
+    <StyledUpdateProfile>
+      <div className='container'>
         <form onSubmit={handleSubmit}>
           <h1>Update Your Details</h1>
           <input
@@ -119,49 +119,49 @@ function UpdateProfile() {
             placeholder='Date Of Birth'
             defaultValue={user.birth_date}
           />
-          <button type='submit'>Submit</button>
-          {/* <p>
-						Already have an account? Click <Link to="/">here</Link>
-					</p> */}
+          <button className='btn' type='submit'>
+            Submit
+          </button>
         </form>
       </div>
-    </StyledRegister>
+    </StyledUpdateProfile>
   );
 }
 
-const StyledRegister = styled.div`
-  height: 80vh;
+const StyledUpdateProfile = styled.div`
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   justify-content: center;
+  background-color: black;
+  color: white;
 
   h1 {
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin: 1.5rem 0rem;
   }
 
-  div {
-    margin-top: 2rem;
-    background-color: aliceblue;
+  .container {
+    margin: 2rem;
+    border: 0.15rem solid #45b480;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 5rem 7rem;
+    justify-content: flex-start;
+    padding: 10rem 3rem;
     border-radius: 1rem;
-    height: 100%;
-    width: 70%;
+    height: 90%;
+    width: 40%;
   }
   form {
-    background-color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 5rem 7rem;
     border-radius: 1rem;
-    height: 50%;
+    height: 90%;
     width: 100%;
   }
 
@@ -170,16 +170,20 @@ const StyledRegister = styled.div`
     height: 20%;
     margin-bottom: 0.7rem;
     padding: 1rem 1rem;
-    border: 1px solid black;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+    font-size: 1rem;
   }
 
-  #register {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
-    border-radius: 1rem;
-    border: 1px black solid;
-    margin: 0.5rem;
+  .btn {
+    margin: 1rem 0rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3ac2bb;
   }
 `;
 

@@ -1,11 +1,11 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { device } from '../responsive';
+import React from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { device } from "../responsive";
 
 const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   console.log(searchTerm);
   // add function to search button that takes to new page - showing filtered searches only.
@@ -13,23 +13,23 @@ const SearchBar = () => {
   return (
     <StyledForm>
       <input
-        type='text'
+        type="text"
         value={searchTerm}
         onInput={(e) => setSearchTerm(e.target.value)}
       />
-      <select name='' id=''>
-        <option value='filter' disabled='disabled'>
+      <select name="" id="">
+        <option value="filter" disabled="disabled">
           Filter
         </option>
-        <option value='filter'>Distance</option>
-        <option value='filter'>Availability</option>
+        <option value="filter">Distance</option>
+        <option value="filter">Availability</option>
       </select>
-      <select name='' id=''>
-        <option value='sort' disabled='disabled'>
+      <select name="" id="">
+        <option value="sort" disabled="disabled">
           Sort By
         </option>
-        <option value='sort'>Advert Age</option>
-        <option value='sort'>Rating</option>
+        <option value="sort">Advert Age</option>
+        <option value="sort">Rating</option>
       </select>
       <Link to={`/search-results?q=${searchTerm}`}>
         <button>Search</button>
@@ -44,7 +44,7 @@ const StyledForm = styled.form`
   margin-bottom: 5rem;
   min-height: 6rem;
   width: 90%;
-  padding-left: 17%;
+  padding-left: 13%;
   padding-right: 3%;
 
   input {
@@ -55,6 +55,7 @@ const StyledForm = styled.form`
     border: 0.15rem solid #45b480;
     border-radius: 0.5rem;
     font-size: 1rem;
+    margin-right: 0.43rem;
   }
   button {
     margin: 0rem 0.6rem;
