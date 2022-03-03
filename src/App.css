@@ -55,6 +55,7 @@
   grid-area: JDbookTaskButton;
 }
 
+
 .grid-container {
   border-width: 1px;
   border-style: solid;
@@ -99,4 +100,5 @@
   width: 20%;
   border: 2px solid black;
   border-radius: 50px;
-} */
+}
+*/
