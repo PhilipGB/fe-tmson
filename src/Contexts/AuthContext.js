@@ -4,6 +4,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	sendPasswordResetEmail,
+	sendEmailVerification,
 } from 'firebase/auth';
 const AuthContext = createContext();
 
@@ -20,6 +21,9 @@ export function AuthProvider({ children }) {
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
 
+	const emailVerify = (email) => {
+		return sendEmailVerification(auth.currentUser);
+	};
 	const login = (email, password) => {
 		return signInWithEmailAndPassword(auth, email, password);
 	};
@@ -48,6 +52,7 @@ export function AuthProvider({ children }) {
 		resetPassword,
 		id,
 		isLogged,
+		emailVerify,
 		setIsLogged,
 	};
 	return (
