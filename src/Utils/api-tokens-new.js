@@ -5,17 +5,18 @@ const tasksApi = axios.create({
 });
 
 export const getLiveJobs = (user_id) => {
-  return tasksApi.get(`/tasks/my-account/${user_id}`).then(({ data }) => {
-    console.log(data);
-    return data;
+  return tasksApi.get(`/tasks/my-account/${user_id}`).then((result) => {
+    console.log(result.data.tasks);
+    return result.data.tasks;
   });
 };
 
 export const postNewTransaction = (transaction) => {
   console.log(transaction);
   return tasksApi
-    .post('/transactions', transaction)
+    .post('/tokens/transactions', transaction)
     .then(({ data }) => {
+      console.log(data);
       return data;
     })
     .catch((err) => {
@@ -24,21 +25,23 @@ export const postNewTransaction = (transaction) => {
 };
 
 export const getTokensByUser = (user_id) => {
-  return tasksApi.get(`tokens/${user_id}`).then(({ data }) => {
-    console.log(data);
-    return data;
+  return tasksApi.get(`tokens/my-tokens/${user_id}`).then(({ data }) => {
+    console.log(data.tokens);
+    return data.tokens;
   });
 };
 
 export const patchTokenOwner = (provider_id, token_id) => {
-  return tasksApi.patch(`tokens/${token_id}`, provider_id).then(({ data }) => {
+  const provider_id_parsed = parseInt(provider_id);
+  console.log(provider_id_parsed, token_id);
+  return tasksApi.patch(`tokens/${token_id}`, provider_id_parsed).then(({ data }) => {
     console.log(data);
     return data;
   });
 };
 
 export const patchTaskToComplete = (task_id) => {
-  return tasksApi.patch(`tasks/my-account/${task_id}`).then(({ data }) => {
+  return tasksApi.patch(`tasks/my-account/approve/${task_id}`).then(({ data }) => {
     console.log(data);
     return data;
   });

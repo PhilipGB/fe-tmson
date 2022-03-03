@@ -4,28 +4,43 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
-import {getLiveJobs} from '../Utils/api-tokens'
+import { getLiveJobs, patchTaskToComplete, patchTokenOwner, postNewTransaction } from '../Utils/api-tokens-new';
 
 // possibly add section that only shows is user has a minter_id - allows to mint new token
 
-function MyTasks() {
+function MyTasks(props) {
 
-    const { user, setUser } = useContext(UserContext);
+     // const { user, setUser } = useContext(UserContext);
+	const [user, setUser] = useState({
+		user_id: 7,
+		username: 'oscarJames24',
+	})
     const [liveJobs, setLiveJobs] = useState([])
-    
+	const {tokens} = props;
+	const tokenToPatch = tokens[0].token_id
 
-    // api call to get livejobs for logged in user
     useEffect(() => {
         getLiveJobs(user.user_id).then((liveJobsFromApi) => {
+			console.log(liveJobsFromApi)
             setLiveJobs(liveJobsFromApi)
         })
-    })
+    }, [])
 
-    const handleJobApproval = () => {
-        // logic to call:
-        // PATCH token_id - send booker and provider id (available) - how to select which token to patch?
-        // POST create transaction (token_id - dont know to get / select first avail - & user_id from state
-    }
+    const handleJobApproval = (provider_id, task_id) => {
+		console.log(provider_id)
+		console.log(tokenToPatch)
+		console.log(task_id)
+
+		postNewTransaction({
+		token_id: tokenToPatch,
+		task_id: task_id
+   		})
+
+		patchTokenOwner(provider_id, tokenToPatch)
+
+	   	patchTaskToComplete(task_id)
+	   	// returns task details
+	}
 
 	return (
 		<StyledRegister>
@@ -34,13 +49,14 @@ function MyTasks() {
                 <ul>
                     {liveJobs && liveJobs.map(jobs => {
                         console.log(jobs)
+						console.log(liveJobs)
                         return (
-                            <li>
+                            <li key={jobs.task_id}>
                                 <h3>{jobs.task_name}</h3>
                                 <p>Description: {jobs.task_description}</p>
                                 <p>Location: {jobs.location}</p>
                                 <p>Date: {jobs.start_time}</p>
-                                <button onClick={handleJobApproval}>Approve Job</button>
+                                <button onClick={() => handleJobApproval(jobs.provider_id, jobs.task_id)}>Approve Job</button>
                             </li>
                         )
                     })}

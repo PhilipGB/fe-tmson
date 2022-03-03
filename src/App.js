@@ -20,7 +20,7 @@ import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
 import Map from './components/Map';
 import { getSkills } from '../src/Utils/api-createJob';
-import { getTokensByUser } from '../src/Utils/api-tokens';
+import { getTokensByUser } from '../src/Utils/api-tokens-new';
 
 function App() {
   const [user, setUser] = useState({
@@ -47,10 +47,10 @@ function App() {
   const [tokens, setTokens] = useState([]);
 
   useEffect(() => {
-    getTokensByUser(user.user_id).then((tokensFromApi) => {
+    getTokensByUser(7).then((tokensFromApi) => {
       setTokens(tokensFromApi);
     });
-  });
+  }, []);
 
   return (
     <div className="App">
@@ -64,14 +64,14 @@ function App() {
               <Route path="/create" element={<CreateJob categoryList={categoryList} />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/:username" element={<UpdateProfile />} />
-              <Route path="/profile/:username/my-tokens" element={<MyTokens tokens={tokens} />} />
-              <Route path="/profile/:username/my-tokens" element={<MyTasks tokens={tokens} />} />
               <Route path="/tasks" element={<TaskList />} />
               <Route path="/search-results" element={<SearchResults />} />
             </Route>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forget-password" element={<ForgetPassword />} />
+            <Route path="/profile/:user_id/my-tokens" element={<MyTokens tokens={tokens} />} />
+            <Route path="/profile/:user_id/my-tasks" element={<MyTasks tokens={tokens} />} />
           </Routes>
           <GlobalStyle />
         </AuthProvider>

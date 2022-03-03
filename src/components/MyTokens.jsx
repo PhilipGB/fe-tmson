@@ -1,28 +1,32 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts/UserContext';
 
 
 function MyTokens(props) {
-
 	const {tokens} = props
+	
 
-	const { user, setUser } = useContext(UserContext);
+	// const { user, setUser } = useContext(UserContext);
 
+	const [user, setUser] = useState({
+		user_id: 7,
+		username: 'oscarJames24',
+	})
 
 
 	return (
 		<StyledRegister>
+				
 			<div>
-				<h1>{user.username}</h1>
+			<h1>{user.username}</h1>
 				<img className="profile-img" src={user.avatar_url} />
-				<h1>Your Tokens</h1>
+				<h2>Your Tokens</h2>
 				<ul>
 					{tokens && tokens.map(token => {
-						console.log(token)
 						return (
-							<li>
+							<li key={token.token_id}>
 								<h3>Token number: {token.token_id}</h3>
 								<p>Minted on: {token.generated_date}</p>
 								<p>By: Minter No. {token.minter_id}</p>
