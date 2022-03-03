@@ -1,8 +1,8 @@
-import React, { useEffect, useContext, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { UserContext } from "../Contexts/UserContext";
-import { getUsersByUserName, patchUser } from "../utils/users.api";
+import React, { useEffect, useContext, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { UserContext } from '../Contexts/UserContext';
+import { getUsersByUserName, patchUser } from '../utils/users.api';
 function UpdateProfile() {
   const emailRef = useRef();
   const { user, setUser } = useContext(UserContext);
@@ -16,9 +16,9 @@ function UpdateProfile() {
   const addressRef = useRef();
   const usernameRef = useRef();
   const passwordRef = useRef();
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState('');
 
-  const id = "WTDc83xcGehNejQjXEVf60Cboe23";
+  const id = 'WTDc83xcGehNejQjXEVf60Cboe23';
 
   const handleChange = (e) => {
     setCurrentUser({
@@ -45,81 +45,81 @@ function UpdateProfile() {
       setUser(currentUser);
     });
 
-    navigate("/profile");
+    navigate('/profile');
   };
 
   useEffect(() => {}, []);
 
   return (
     <StyledUpdateProfile>
-      <div className="container">
+      <div className='container'>
         <form onSubmit={handleSubmit}>
           <h1>Update Your Details</h1>
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={firstNameRef}
-            placeholder="First Name"
+            placeholder='First Name'
             defaultValue={user.first_name}
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={lastNameRef}
-            placeholder="Last Name"
+            placeholder='Last Name'
             defaultValue={user.last_name}
           />
           <input
             onChange={handleChange}
-            type="email"
+            type='email'
             ref={emailRef}
-            placeholder="Email"
+            placeholder='Email'
             defaultValue={user.email_address}
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={usernameRef}
-            placeholder="Username"
+            placeholder='Username'
             defaultValue={user.username}
           />
 
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={avatarUrlRef}
-            placeholder="Avatar Url"
+            placeholder='Avatar Url'
             defaultValue={user.avatar_url}
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={addressRef}
-            placeholder="Address"
+            placeholder='Address'
             defaultValue={user.address}
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={postcodeRef}
-            placeholder="Postcode"
+            placeholder='Postcode'
             defaultValue={user.postcode}
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={bioRef}
-            placeholder="Bio"
+            placeholder='Bio'
             defaultValue={user.bio}
           />
           <input
             onChange={handleChange}
-            type="date"
+            type='date'
             ref={dobRef}
-            placeholder="Date Of Birth"
+            placeholder='Date Of Birth'
             defaultValue={user.birth_date}
           />
-          <button className="btn" type="submit">
+          <button className='btn' type='submit'>
             Submit
           </button>
         </form>

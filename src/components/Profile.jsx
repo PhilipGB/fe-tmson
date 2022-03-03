@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { UserContext } from "../Contexts/UserContext";
+import React, { useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { UserContext } from '../Contexts/UserContext';
 function Profile() {
   const { user, setUser } = useContext(UserContext);
 
@@ -9,7 +9,7 @@ function Profile() {
     <StyledProfile>
       <div>
         <h1>Your Profile</h1>
-        <img className="profile-img" src={user.avatar_url} />
+        <img className='profile-img' src={user.avatar_url} />
         <p>First Name: {user.first_name}</p>
         <p>Last Name: {user.last_name}</p>
         <p>Date of Birth: {user.birth_date}</p>
@@ -18,7 +18,7 @@ function Profile() {
         <p>Email: {user.email_address}</p>
         <p>Bio: {user.bio}</p>
 
-        <Link to={`/profile/${user.username}`} className="btn">
+        <Link to={`/profile/${user.username}`} className='btn'>
           Update Your Details
         </Link>
       </div>
@@ -61,6 +61,20 @@ const StyledProfile = styled.div`
     margin-top: 1rem;
   }
   p {
+    margin: 10px;
+  }
+  .profile {
+    background-color: aliceblue;
+
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 7rem;
+    border-radius: 1rem;
+    height: 100%;
+    width: 60%;
+  }
+
+  .update-btn {
     margin: 10px;
   }
 `;
