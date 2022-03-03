@@ -9,7 +9,6 @@ const JobBookingProcess = () => {
   const { task_id } = useParams();
   const [task, setTask] = useState({});
   const [view, setView] = useState('booking view');
-  const { emailVerify } = useAuth();
   const new_provider = user.user_id;
 
   const body = { ...task };
@@ -21,7 +20,6 @@ const JobBookingProcess = () => {
 
     setErr(null);
     setView('booked view');
-    emailVerify();
     patchTaskByID(body, task_id).catch((err) => {
       setView('booking view');
       setErr(
@@ -68,7 +66,7 @@ const JobBookingProcess = () => {
             <h2 className='JDrequestedBy'>Requested By:</h2>
             <h2 className='JDrequestedBy2'>
               {task.first_name} (
-              <a href='https://tmson-api.herokuapp.com/api/users/fthynne0'>
+              <a href={`https://tmson-api.herokuapp.com/api/users/${task.username}`}>
                 {task.username}
               </a>
               )
@@ -83,14 +81,16 @@ const JobBookingProcess = () => {
 
       {view === 'booked view' && (
         <div>
-          <h1>Congratulations! You booked the task.</h1>
+          <h1>Thank you for offering your time and skills!</h1>
           <h2>
-            Contact {task.first_name} (
-            <a href='https://tmson-api.herokuapp.com/api/users/fthynne0'>
-              {task.username}
-            </a>
-            )for more information and to confirm your start time and exact
-            location & Check Your Email for a link to confirm your booking.
+          A booking request email has been sent to {task.first_name} (
+                    <a href={`https://tmson-api.herokuapp.com/api/users/${task.username}`}>
+                        {task.username}
+                            </a>
+                                ).
+            </h2>
+            <h2>
+				Once {task.first_name} has approved your booking, you will be sent a confirmation email and can proceed with your chosen task.
           </h2>
         </div>
       )}
