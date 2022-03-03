@@ -98,6 +98,7 @@ export const StyledMap = styled.div`
   height: 100vh;
   color: white;
   display: flex;
+  z-index: 2;
 
   .leaflet-container {
     margin-left: 2rem;

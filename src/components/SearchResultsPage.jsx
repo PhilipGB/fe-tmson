@@ -53,13 +53,15 @@ export const StyledSearchContainer = styled.div`
   display: grid;
   width: 70vw;
   margin: auto;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 2fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
+  grid-gap: 3rem;
 `;
 
 export const StyledResults = styled.div`
   background-color: black;
   color: white;
   height: 100vh;
+  padding: 2rem 0rem;
 
   #search {
     margin: 2rem 2rem;
