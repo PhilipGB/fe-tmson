@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
-import { getTasks, getTasksById } from '../utils/users.api';
-const postcodes = require('node-postcodes.io');
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
+import { getTasks, getTasksById } from "../utils/users.api";
+import styled from "styled-components";
+const postcodes = require("node-postcodes.io");
 
 function Map() {
   const [task, setTask] = useState();
@@ -44,11 +45,11 @@ function Map() {
   };
 
   return (
-    <div>
+    <StyledMap>
       {task && (
-        <div className='task-disc'>
+        <div className="task-disc">
           <h2>Task</h2>
-          <img src={task.avatar_url} alt='' />
+          <img src={task.avatar_url} alt="" />
           <h4>
             Name: {task.first_name} {task.last_name}
           </h4>
@@ -68,7 +69,7 @@ function Map() {
           scrollWheelZoom={true}
         >
           <TileLayer
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {latLong.map((task) => (
@@ -88,8 +89,34 @@ function Map() {
           ))}
         </MapContainer>
       )}
-    </div>
+    </StyledMap>
   );
 }
+
+export const StyledMap = styled.div`
+  background-color: black;
+  height: 100vh;
+  color: white;
+  display: flex;
+
+  .leaflet-container {
+    margin-left: 2rem;
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+  }
+
+  .task-disc {
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+    margin-top: 10rem;
+    h2 {
+      align-self: center;
+      font-size: 3rem;
+    }
+    h4 {
+      margin: 1rem 0rem;
+    }
+  }
+`;
 
 export default Map;
