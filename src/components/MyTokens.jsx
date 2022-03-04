@@ -8,7 +8,6 @@ import { mintToken } from '../Utils/api-tokens-new'
 function MyTokens(props) {
 	const {tokens} = props
 	
-
 	const { user, setUser } = useContext(UserContext);
 
 	const mintCoin = () => {
@@ -24,7 +23,8 @@ function MyTokens(props) {
 				<img className="profile-img" src={user.avatar_url} />
 				<h2>Your Tokens</h2>
 				<ul>
-					{tokens && tokens.map(token => {
+					{tokens.map(token => {
+            console.log(tokens)
 						return (
 							<li key={token.token_id}>
 								<h3>Token# {token.token_id}</h3>

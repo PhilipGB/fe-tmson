@@ -25,6 +25,7 @@ export const postNewTransaction = (transaction) => {
 };
 
 export const getTokensByUser = (user_id) => {
+  console.log(user_id);
   return tasksApi.get(`tokens/my-tokens/${user_id}`).then(({ data }) => {
     console.log(data.tokens);
     return data.tokens;
@@ -53,8 +54,8 @@ export const mintToken = (minter_id = 1, owner_id) => {
     minter_id: minter_id,
     owner_id: owner_id,
   };
-  return tasksApi.post('tokens/', mintRequest).then((data) => {
-    console.log(data.token);
+  return tasksApi.post('tokens/', mintRequest).then(({ data }) => {
+    console.log(data);
     return data.token;
   });
 };

@@ -39,38 +39,33 @@ function App() {
   const [tokens, setTokens] = useState([]);
 
   useEffect(() => {
-    getTokensByUser(7).then((tokensFromApi) => {
+    console.log(user.user_id);
+    getTokensByUser(user.user_id).then((tokensFromApi) => {
       setTokens(tokensFromApi);
     });
   }, []);
 
   return (
-    <div className='App'>
+    <div className="App">
       <UserContext.Provider value={{ user, setUser }}>
         <AuthProvider>
           <Nav />
           <Routes location={location} key={location.pathname}>
             <Route element={<PrivateRoutes />}>
-              <Route path='/home' element={<Home />} />
-              <Route path='/map' element={<Map />} />
-              <Route path='/create' element={<CreateJob />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/profile/:username' element={<UpdateProfile />} />
-              <Route path='/tasks' element={<TaskList />} />
-              <Route path='/tasks/:task_id' element={<JobBookingProcess />} />
-              <Route path='/search-results' element={<SearchResults />} />
-              <Route
-                path='/profile/:user_id/my-tokens'
-                element={<MyTokens tokens={tokens} />}
-              />
-              <Route
-                path='/profile/:user_id/my-tasks'
-                element={<MyTasks tokens={tokens} />}
-              />
+              <Route path="/home" element={<Home />} />
+              <Route path="/map" element={<Map />} />
+              <Route path="/create" element={<CreateJob />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:username" element={<UpdateProfile />} />
+              <Route path="/tasks" element={<TaskList />} />
+              <Route path="/tasks/:task_id" element={<JobBookingProcess />} />
+              <Route path="/search-results" element={<SearchResults />} />
+              <Route path="/profile/:user_id/my-tokens" element={<MyTokens tokens={tokens} />} />
+              <Route path="/profile/:user_id/my-tasks" element={<MyTasks tokens={tokens} />} />
             </Route>
-            <Route path='/' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/forget-password' element={<ForgetPassword />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/forget-password" element={<ForgetPassword />} />
           </Routes>
           <GlobalStyle />
         </AuthProvider>
