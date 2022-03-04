@@ -19,6 +19,7 @@ import { UserContext } from './Contexts/UserContext';
 import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
 import Map from './components/Map';
+import { getSkills } from '../src/Utils/api-createJob';
 import { getTokensByUser } from '../src/Utils/api-tokens-new';
 
 function App() {

@@ -72,7 +72,7 @@ const CreateJob = (props) => {
             placeholder='Category: '
             onChange={(e) => setForm({ ...form, category: e.target.value })}
           >
-            <option value=''> --- Please select a category </option>
+            <option value=''>Please select a category </option>
             {categoryList.map((category) => {
               return <option key={category.slug}>{category.slug}</option>;
             })}
@@ -83,7 +83,7 @@ const CreateJob = (props) => {
             placeholder='subCategory: '
             onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
           >
-            <option value=''> --- Please select a sub-category </option>
+            <option value=''>Please select a sub-category </option>
             {subCategoryList.map((category) => {
               return (
                 <option key={category.skill_id} value={category.skill_id}>
