@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getSearchResults } from '../utils/api-filterjobs';
+import { getSearchResults } from '../Utils/api-filterjobs';
 import SearchBar from './SearchBar';
 import { Link } from 'react-router-dom';
 import { StyledJobCard } from '../styles';
@@ -26,7 +26,6 @@ const SearchResults = (props) => {
         <StyledSearchContainer>
           {searchResults &&
             searchResults.map((results) => {
-              console.log(results);
               return (
                 <StyledJobCard key={results.task_id}>
                   <div>
@@ -53,13 +52,15 @@ export const StyledSearchContainer = styled.div`
   display: grid;
   width: 70vw;
   margin: auto;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 2fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
+  grid-gap: 3rem;
 `;
 
 export const StyledResults = styled.div`
   background-color: black;
   color: white;
   height: 100vh;
+  padding: 2rem 0rem;
 
   #search {
     margin: 2rem 2rem;

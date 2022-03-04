@@ -1,11 +1,11 @@
-import React, { useContext, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { useAuth } from "../Contexts/AuthContext";
-import { UserContext } from "../Contexts/UserContext";
-import { postUser } from "../utils/users.api";
+import React, { useContext, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useAuth } from '../Contexts/AuthContext';
+import { UserContext } from '../Contexts/UserContext';
+import { postUser } from '../Utils/users.api';
 const Register = () => {
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const emailRef = useRef();
   const { user, setUser } = useContext(UserContext);
@@ -20,7 +20,7 @@ const Register = () => {
   const passwordRef = useRef();
   const { signUp, currentUser } = useAuth();
   const navigate = useNavigate();
-  const id = "Qn5aXPnHq6VvA6IMGuWh9DYKzT82";
+  const id = 'Qn5aXPnHq6VvA6IMGuWh9DYKzT82';
 
   const handleChange = (e) => {
     setUser({
@@ -41,90 +41,90 @@ const Register = () => {
     e.preventDefault();
     postUser(user).then(() => {
       signUp(emailRef.current.value, passwordRef.current.value);
-      navigate("/home");
+      navigate('/home');
     });
   };
   return (
     <StyledRegister>
-      <div className="container">
+      <div className='container'>
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           {error}
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={firstNameRef}
-            placeholder="First Name"
+            placeholder='First Name'
             required
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={lastNameRef}
-            placeholder="Last Name"
+            placeholder='Last Name'
             required
           />
           <input
             onChange={handleChange}
-            type="email"
+            type='email'
             ref={emailRef}
-            placeholder="Email"
+            placeholder='Email'
             required
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={usernameRef}
-            placeholder="Username"
+            placeholder='Username'
             required
           />
           <input
             onChange={handleChange}
-            type="password"
+            type='password'
             ref={passwordRef}
-            placeholder="Password"
+            placeholder='Password'
             required
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={avatarUrlRef}
-            placeholder="Avatar Url"
+            placeholder='Avatar Url'
             required
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={addressRef}
-            placeholder="Address"
+            placeholder='Address'
             required
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={postcodeRef}
-            placeholder="Postcode"
+            placeholder='Postcode'
             required
           />
           <input
             onChange={handleChange}
-            type="text"
+            type='text'
             ref={bioRef}
-            placeholder="Bio"
+            placeholder='Bio'
             required
           />
           <input
             onChange={handleChange}
-            type="date"
+            type='date'
             ref={dobRef}
-            placeholder="Date Of Birth"
+            placeholder='Date Of Birth'
             required
           />
-          <button disabled={loading} className="btn" type="submit">
+          <button disabled={loading} className='btn' type='submit'>
             Register
           </button>
           <p>
-            Already have an account? Click <Link to="/">here</Link>
+            Already have an account? Click <Link to='/'>here</Link>
           </p>
         </form>
       </div>
