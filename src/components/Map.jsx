@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
-import { getTasks, getTasksById } from "../utils/users.api";
-import styled from "styled-components";
-const postcodes = require("node-postcodes.io");
+import React, { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
+import { getTasks, getTasksById } from '../Utils/users.api';
+import styled from 'styled-components';
+const postcodes = require('node-postcodes.io');
 
 function Map() {
   const [task, setTask] = useState();
@@ -47,9 +47,9 @@ function Map() {
   return (
     <StyledMap>
       {task && (
-        <div className="task-disc">
+        <div className='task-disc'>
           <h2>Task</h2>
-          <img src={task.avatar_url} alt="" />
+          <img src={task.avatar_url} alt='' />
           <h4>
             Name: {task.first_name} {task.last_name}
           </h4>
@@ -69,7 +69,7 @@ function Map() {
           scrollWheelZoom={true}
         >
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {latLong.map((task) => (
@@ -95,20 +95,53 @@ function Map() {
 
 export const StyledMap = styled.div`
   background-color: black;
-  height: 100vh;
+  height: 90vh;
   color: white;
   display: flex;
+
+  .grid-container {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'JDtaskThumbnail JDtaskThumbnail'
+      'JDcategory JDcategory2'
+      'JDsubcategory JDsubcategory2'
+      'JDlocation JDlocation2'
+      'JDskillDescription JDskillDescription2'
+      'JDabout JDabout2'
+      'JDrequestedBy JDrequestedBy2';
+  }
 
   .leaflet-container {
     margin-left: 2rem;
     border: 0.15rem solid #45b480;
     border-radius: 0.5rem;
+    width: 70%;
+    height: 82vh;
+    display: flex;
+    top: 70px;
+    z-index: 1;
   }
 
   .task-disc {
     border: 0.15rem solid #45b480;
     border-radius: 0.5rem;
     margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 1px;
+    top: 190px;
+    margin: 20px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 25%;
+    padding: 10px;
+
     h2 {
       align-self: center;
       font-size: 3rem;
@@ -116,6 +149,11 @@ export const StyledMap = styled.div`
     h4 {
       margin: 1rem 0rem;
     }
+  }
+  .task-disc > img {
+    width: 20%;
+    border: 2px solid black;
+    border-radius: 50px;
   }
 `;
 

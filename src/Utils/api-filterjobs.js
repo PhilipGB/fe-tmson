@@ -1,4 +1,3 @@
-import { queryByLabelText } from '@testing-library/dom';
 import axios from 'axios';
 
 const tasksApi = axios.create({

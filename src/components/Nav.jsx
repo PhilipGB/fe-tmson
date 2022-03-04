@@ -4,16 +4,18 @@ import {
   lineOne,
   lineThree,
   lineTwo,
-} from '../animation';
-import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
-import { UserContext } from '../Contexts/UserContext';
-import { motion } from 'framer-motion';
-import { useAuth } from '../Contexts/AuthContext';
-import { Link } from 'react-router-dom';
+} from "../animation";
+import { image6 } from "../images";
+import React, { useState, useContext } from "react";
+import styled from "styled-components";
+import { UserContext } from "../Contexts/UserContext";
+import { motion } from "framer-motion";
+import { useAuth } from "../Contexts/AuthContext";
+import { Link } from "react-router-dom";
+import logo from "../Logo";
 const variants = {
   open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: '-100%' },
+  closed: { opacity: 0, x: "-100%" },
 };
 
 const Nav = () => {
@@ -34,38 +36,38 @@ const Nav = () => {
       <StyledNav>
         <StyledHamburger onClick={() => setIsOpen((isOpen) => !isOpen)}>
           <motion.div
-            animate={isOpen ? 'open' : ''}
+            animate={isOpen ? "open" : ""}
             variants={lineOne}
           ></motion.div>
           <motion.div
-            animate={isOpen ? 'open' : 'closed'}
+            animate={isOpen ? "open" : "closed"}
             variants={lineTwo}
           ></motion.div>
           <motion.div
-            animate={isOpen ? 'open' : ''}
+            animate={isOpen ? "open" : ""}
             variants={lineThree}
           ></motion.div>
         </StyledHamburger>
         {currentUser && isLogged ? (
-          <h3 className='welcome-msg'> Hello {user.first_name}</h3>
+          <h3 className="welcome-msg"> Hello {user.first_name}</h3>
         ) : (
-          ''
+          ""
         )}
-        <Link className='nav-link' to='/profile'>
+        <Link className="nav-link" to="/profile">
           {isLogged ? (
-            <img className='profile-img-nav' src={user.avatar_url} />
+            <img className="profile-img-nav" src={user.avatar_url} />
           ) : (
-            ''
+            ""
           )}
-          {isLogged ? <p className='nav-username'>{user.username}</p> : ''}
+          {isLogged ? <p className="nav-username">{user.username}</p> : ""}
         </Link>
         <StyledMenu
-          animate={isOpen ? 'open' : 'closed'}
+          animate={isOpen ? "open" : "closed"}
           variants={hamburgerAnimation}
         >
           <ul>
             {isLogged && currentUser ? (
-              <Link to='/profile' onClick={() => setIsOpen(false)}>
+              <Link to="/profile" onClick={() => setIsOpen(false)}>
                 <motion.li
                   variants={animationLinks}
                   whileHover={{ scale: 1.1 }}
@@ -75,8 +77,9 @@ const Nav = () => {
                 </motion.li>
               </Link>
             ) : (
-              ''
+              ""
             )}
+            <Link to='/profile/:user_id/my-tokens' onClick={() => setIsOpen(false)}>
             <motion.li
               variants={animationLinks}
               whileHover={{ scale: 1.1 }}
@@ -84,6 +87,8 @@ const Nav = () => {
             >
               Tokens
             </motion.li>
+            </Link>
+            <Link to='/profile/:user_id/my-tasks' onClick={() => setIsOpen(false)}>
             <motion.li
               variants={animationLinks}
               whileHover={{ scale: 1.1 }}
@@ -91,8 +96,9 @@ const Nav = () => {
             >
               Jobs
             </motion.li>
+            </Link>
             {isLogged ? (
-              <Link to='/' onClick={handleLogOut}>
+              <Link to="/" onClick={handleLogOut}>
                 <motion.li
                   variants={animationLinks}
                   whileHover={{ scale: 1.1 }}
@@ -102,12 +108,14 @@ const Nav = () => {
                 </motion.li>
               </Link>
             ) : (
-              ''
+              ""
             )}
           </ul>
         </StyledMenu>
-        <Link to='/home'>
-          <h1>Logo</h1>
+        <Link to="/home">
+          <div className="img-container">
+            <img className="logo" src={logo} alt="task" />
+          </div>
         </Link>
       </StyledNav>
     </StyledNavContainer>
@@ -138,6 +146,21 @@ const StyledNav = styled(motion.nav)`
   justify-content: space-between;
   align-items: center;
   margin: 0rem 2rem;
+  color: white;
+  a {
+    .img-container {
+      height: 3rem;
+      width: 3rem;
+      position: absolute;
+      top: 3%;
+      left: 81.5%;
+      img {
+        width: 15rem;
+        height: 15rem;
+        object-fit: contain;
+      }
+    }
+  }
   h1 {
     font-size: 3rem;
     color: #45b480;
@@ -155,6 +178,7 @@ const StyledNav = styled(motion.nav)`
     position: absolute;
     right: 79px;
     top: 29px;
+    color: white;
   }
   .welcome-msg {
     position: absolute;
@@ -163,6 +187,16 @@ const StyledNav = styled(motion.nav)`
   .nav-link {
     text-decoration: none;
     color: black;
+  }
+  .logo {
+    width: 26%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    position: absolute;
+    right: 500px;
+    top: -40px;
+    margin-bottom: 30px;
   }
 `;
 const StyledMenu = styled(motion.div)`
@@ -178,6 +212,7 @@ const StyledMenu = styled(motion.div)`
   padding: 0rem 4rem;
   z-index: 10;
   background-color: #313131cc;
+
   ul {
     width: 100%;
   }

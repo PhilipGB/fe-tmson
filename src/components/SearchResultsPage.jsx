@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getSearchResults } from "../Utils/api-filterjobs";
-import SearchBar from "./SearchBar";
-import { Link } from "react-router-dom";
-import { StyledJobCard } from "../styles";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getSearchResults } from '../Utils/api-filterjobs';
+import SearchBar from './SearchBar';
+import { Link } from 'react-router-dom';
+import { StyledJobCard } from '../styles';
+import styled from 'styled-components';
 
 const SearchResults = (props) => {
   const { search } = useLocation();
@@ -22,11 +22,10 @@ const SearchResults = (props) => {
     <StyledResults>
       <main>
         <SearchBar />
-        <h1 id="search">Search Results:</h1>
+        <h1 id='search'>Search Results:</h1>
         <StyledSearchContainer>
           {searchResults &&
             searchResults.map((results) => {
-              console.log(results);
               return (
                 <StyledJobCard key={results.task_id}>
                   <div>
@@ -37,8 +36,8 @@ const SearchResults = (props) => {
                   <h2>Skill category: {results.skill_category}</h2>
                   <h2>Skill subcategory: {results.skill_subcategory}</h2>
                   <Link key={results.task_id} to={`/tasks/${results.task_id}`}>
-                    {" "}
-                    See more...{" "}
+                    {' '}
+                    See more...{' '}
                   </Link>
                 </StyledJobCard>
               );
@@ -53,13 +52,15 @@ export const StyledSearchContainer = styled.div`
   display: grid;
   width: 70vw;
   margin: auto;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 2fr));
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 2fr));
+  grid-gap: 3rem;
 `;
 
 export const StyledResults = styled.div`
   background-color: black;
   color: white;
   height: 100vh;
+  padding: 2rem 0rem;
 
   #search {
     margin: 2rem 2rem;
