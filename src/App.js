@@ -18,6 +18,7 @@ import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
 import Map from './components/Map';
 import { getSkills } from '../src/Utils/api-createJob';
+import JobOwnerApprovalProcess from './components/JobOwnerApprovalProcess';
 
 function App() {
   const [user, setUser] = useState({
@@ -62,7 +63,8 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/forget-password' element={<ForgetPassword />} />
             <Route path='/tasks' element={<TaskList />} />
-            <Route path='/search-results' element={<SearchResults />} />
+            <Route path='/search-results' element={<SearchResults />} />              
+            <Route path='/tasks/my-account/:user_id' element={<JobOwnerApprovalProcess />} />
           </Routes>
           <GlobalStyle />
         </AuthProvider>
