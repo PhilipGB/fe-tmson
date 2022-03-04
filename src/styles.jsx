@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const StyledJobCard = styled.div`
   background: linear-gradient(180deg, #272727, #464545);
   color: #ffffff;
-  border: 0.15rem solid black;
-  box-shadow: 0px 0px 20px white;
+  border: 0.15rem solid white;
   border-radius: 0.5rem;
   height: 25rem;
   width: 35rem;
@@ -26,8 +25,17 @@ export const StyledJobCard = styled.div`
 
   h2 {
     align-self: flex-start;
-    margin: 1.5rem 1rem;
+    margin: 1rem 1rem;
     font-size: 1rem;
+  }
+
+  img {
+    margin: 1rem 0rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3ac2bb;
   }
 `;
 

@@ -1,22 +1,15 @@
-import Nav from './Nav';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import { useContext } from 'react'
+import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../Contexts/UserContext';
-import { useNavigate } from 'react-router'
-import {
-  getSkills,
-  postNewTask,
-  getSkillsSubCat,
-} from '../Utils/api-createJob';
+import { useNavigate } from 'react-router';
+import { postNewTask, getSkillsSubCat } from '../Utils/api-createJob';
 
 const CreateJob = (props) => {
   // do i need to pass category list as props or can i run two useEffect in same page?
 
-  const { user } = useContext(UserContext)
-  console.log(user.user_id)
+  const { user } = useContext(UserContext);
+  console.log(user.user_id);
   const { categoryList } = props;
   const [subCategoryList, setSubCategoryList] = useState([]);
   const [form, setForm] = useState({
@@ -29,8 +22,8 @@ const CreateJob = (props) => {
     location: '',
   });
 
-  const category = form.category;
-  let navigate = useNavigate()
+  // const category = form.category;
+  let navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,9 +38,8 @@ const CreateJob = (props) => {
     };
     console.log(postedTask);
     postNewTask(postedTask);
-    window.alert(`Thanks ${user.username}, your job has been posted`)
-    navigate('/home')
-    
+    window.alert(`Thanks ${user.username}, your job has been posted`);
+    navigate('/home');
   };
 
   // introduce a state that changes when category selected? To then trigger useEffect?
@@ -60,7 +52,7 @@ const CreateJob = (props) => {
   return (
     <StyledCreateJob>
       <form className='CreateJob__form' onSubmit={handleSubmit}>
-        <h1>Post your job</h1>
+        <h2>Post your job</h2>
         <input
           id='taskName'
           type='text'
@@ -68,33 +60,34 @@ const CreateJob = (props) => {
           placeholder='Task Name: '
           onChange={(e) => setForm({ ...form, taskName: e.target.value })}
         />
-        <select
-          id='category'
-          required
-          placeholder='Category: '
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
-        >
-          <option value=''> --- Please select a category </option>
-          {categoryList.map((category) => {
-            return <option>{category.slug}</option>;
-          })}
-        </select>
-        <select
-          id='subcategory'
-          required
-          placeholder='subCategory: '
-          onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
-        >
-          <option value=''> --- Please select a sub-category </option>
-          {subCategoryList.map((category) => {
-            return (
-              <option value={category.skill_id}>
-                {category.skill_subcategory}
-              </option>
-            );
-          })}
-        </select>
-
+        <div className='select-container'>
+          <select
+            id='category'
+            required
+            placeholder='Category: '
+            onChange={(e) => setForm({ ...form, category: e.target.value })}
+          >
+            <option value=''>Please select a category </option>
+            {categoryList.map((category) => {
+              return <option>{category.slug}</option>;
+            })}
+          </select>
+          <select
+            id='subcategory'
+            required
+            placeholder='subCategory: '
+            onChange={(e) => setForm({ ...form, subCategory: e.target.value })}
+          >
+            <option value=''>Please select a sub-category </option>
+            {subCategoryList.map((category) => {
+              return (
+                <option value={category.skill_id}>
+                  {category.skill_subcategory}
+                </option>
+              );
+            })}
+          </select>
+        </div>
         <input
           type='text'
           required
@@ -113,15 +106,14 @@ const CreateJob = (props) => {
         />
         <input
           type='text'
-          pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"
-          title="Please enter valid UK postcode with spacings: AB23 4CD"
+          pattern='([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})'
+          title='Please enter valid UK postcode with spacings: AB23 4CD'
           required
           placeholder='Location: '
           onChange={(e) => setForm({ ...form, location: e.target.value })}
         />
-        <button className='Button' type='submit'>
-          {' '}
-          Post new task{' '}
+        <button className='btn' type='submit'>
+          Post new task
         </button>
       </form>
     </StyledCreateJob>
@@ -129,36 +121,65 @@ const CreateJob = (props) => {
 };
 
 const StyledCreateJob = styled.div`
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: black;
+  color: white;
 
-  h1 {
-    margin-bottom: 2rem;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 3.5rem;
   }
 
   form {
-    background-color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5rem 7rem;
+    padding: 10rem 10rem;
+    height: 65%;
     border-radius: 1rem;
+    margin-bottom: 20rem;
+    border: 0.15rem solid #45b480;
   }
 
   input {
-    width: 25rem;
-    margin-bottom: 0.7rem;
-    padding: 1rem 1rem;
-    border: 1px solid black;
+    width: 35rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem 1rem;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+    font-size: 1rem;
   }
 
   #create {
     display: inline-block;
     margin: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .select-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    select {
+      padding: 1.3rem 0rem 1.3rem 2rem;
+      margin: 0rem 0.3rem;
+      background-color: black;
+      color: white;
+      border: 0.15rem solid #3ac2bb;
+      border-radius: 0.5rem;
+      width: 48%;
+      font-size: 1rem;
+    }
   }
 `;
 

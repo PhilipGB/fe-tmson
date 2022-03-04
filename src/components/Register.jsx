@@ -46,7 +46,7 @@ const Register = () => {
   };
   return (
     <StyledRegister>
-      <div>
+      <div className='container'>
         <form onSubmit={handleSubmit}>
           <h1>Sign Up</h1>
           {error}
@@ -120,7 +120,7 @@ const Register = () => {
             placeholder='Date Of Birth'
             required
           />
-          <button disabled={loading} type='submit'>
+          <button disabled={loading} className='btn' type='submit'>
             Register
           </button>
           <p>
@@ -133,39 +133,39 @@ const Register = () => {
 };
 
 const StyledRegister = styled.div`
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  background-color: black;
+  color: white;
 
   h1 {
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    margin: 1rem 0rem;
   }
 
-  div {
-    margin-top: 2rem;
-
-    background-color: aliceblue;
+  .container {
+    margin: 2rem;
+    border: 0.15rem solid #45b480;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 5rem 7rem;
+    justify-content: flex-start;
+    padding: 10rem 3rem;
     border-radius: 1rem;
-    height: 100%;
-    width: 60%;
+    height: 90%;
+    width: 40%;
   }
   form {
-    background-color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 5rem 7rem;
     border-radius: 1rem;
-    height: 50%;
+    height: 90%;
     width: 100%;
   }
 
@@ -174,16 +174,29 @@ const StyledRegister = styled.div`
     height: 20%;
     margin-bottom: 0.7rem;
     padding: 1rem 1rem;
-    border: 1px solid black;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+    font-size: 1rem;
   }
 
   #register {
     display: inline-block;
     padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
     border-radius: 1rem;
     border: 1px black solid;
     margin: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    margin: 1rem 0rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: #3ac2bb;
   }
 `;
 

@@ -1,11 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-
 import { useState, useEffect } from 'react';
 import './App.css';
 import CreateJob from './components/CreateJob';
 import ForgetPassword from './components/ForgetPassword';
 import GlobalStyle from './components/GlobalStyle';
 import Home from './components/Home';
+import JobBookingProcess from './components/JobBookingProcess';
 import Login from './components/Login';
 import Nav from './components/Nav';
 import TaskList from './components/TaskList';
@@ -54,6 +54,7 @@ function App() {
                 path='/create'
                 element={<CreateJob categoryList={categoryList} />}
               />
+              <Route path='/tasks/:task_id' element={<JobBookingProcess />} />
               <Route path='/profile' element={<Profile />} />
               <Route path='/profile/:username' element={<UpdateProfile />} />
             </Route>
