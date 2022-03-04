@@ -1,43 +1,45 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { UserContext } from '../Contexts/UserContext';
-import { mintToken } from '../Utils/api-tokens-new'
-
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { UserContext } from "../Contexts/UserContext";
+import { mintToken } from "../Utils/api-tokens-new";
 
 function MyTokens(props) {
-	const {tokens} = props
-	
+  const { tokens } = props;
 
-	const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-	const mintCoin = () => {
-		mintToken(1, user.user_id)
-    window.alert(`New token successfully minted`)
-	}
+  const mintCoin = () => {
+    mintToken(1, user.user_id);
+    window.alert(`New token successfully minted`);
+  };
 
-	return (
-		<StyledProfile>
-				
-			<div>
-			<h1>{user.username}</h1>
-				<img className="profile-img" src={user.avatar_url} />
-				<h2>Your Tokens</h2>
-				<ul>
-					{tokens && tokens.map(token => {
-						return (
-							<li key={token.token_id}>
-								<h3>Token# {token.token_id}</h3>
-								<p>Minted on: {token.generated_date}</p>
-								<p>By: Minter No. {token.minter_id}</p>
-							</li>
-						)
-					})}
-				</ul>
-			<button onClick={() => mintCoin()}> Mint New Token </button>
-			</div>
-		</StyledProfile>
-	);
+  return (
+    <StyledProfile>
+      <div className="container">
+        <h1>{user.username}</h1>
+        <img className="profile-img" src={user.avatar_url} />
+        <h2>Your Tokens</h2>
+        <ul>
+          {tokens &&
+            tokens.map((token) => {
+              return (
+                <li key={token.token_id}>
+                  <h3>Token# {token.token_id}</h3>
+                  <p>Minted on: {token.generated_date}</p>
+                  <p>By: Minter No. {token.minter_id}</p>
+                </li>
+              );
+            })}
+        </ul>
+        <div className="button">
+          <button className="btn" onClick={() => mintCoin()}>
+            Mint New Token
+          </button>
+        </div>
+      </div>
+    </StyledProfile>
+  );
 }
 
 const StyledProfile = styled.div`
@@ -53,7 +55,7 @@ const StyledProfile = styled.div`
     font-size: 2rem;
     margin: 1rem 0rem;
   }
-  div {
+  .container {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -71,8 +73,12 @@ const StyledProfile = styled.div`
     align-self: center;
     margin-top: 1rem;
   }
+  h3 {
+    margin: 1rem 0rem;
+  }
+
   p {
-    margin: 10px;
+    margin-bottom: 0.5rem;
   }
   .profile {
     background-color: aliceblue;
@@ -85,6 +91,14 @@ const StyledProfile = styled.div`
   }
   .update-btn {
     margin: 10px;
+  }
+
+  .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
   }
 `;
 
