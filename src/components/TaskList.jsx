@@ -4,13 +4,10 @@ import SearchBar from './SearchBar'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
 
-// add Links to specific task pages
-// or Link to booking page
 
 
 const TaskList = () => {
     
-    // get params from URL
     const [tasks, SetTasks] = useState([])
     const [orderBy, setOrderBy] = useState('desc')
     const [sortBy, setSortBy] = useState('')

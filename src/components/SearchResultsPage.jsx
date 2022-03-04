@@ -11,8 +11,6 @@ const SearchResults = (props) => {
 const { search } = useLocation(); 
 const [searchResults, setSearchResults] = useState([])
 
-console.log(search)
-
 useEffect(() => {
     getSearchResults(search).then((searchFromApi) => {
       setSearchResults(searchFromApi)
@@ -25,7 +23,6 @@ useEffect(() => {
       <h1>Search Results:</h1>
       <ul>
           {searchResults && searchResults.map(results => {
-              console.log(results)
               return (
                   <li key={results.task_id}> 
                       <p>Search result: {results.task_name}</p>

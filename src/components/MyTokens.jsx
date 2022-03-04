@@ -9,15 +9,11 @@ function MyTokens(props) {
 	const {tokens} = props
 	
 
-	// const { user, setUser } = useContext(UserContext);
-
-	const [user, setUser] = useState({
-		user_id: 7,
-		username: 'oscarJames24',
-	})
+	const { user, setUser } = useContext(UserContext);
 
 	const mintCoin = () => {
 		mintToken(1, user.user_id)
+    window.alert(`New token successfully minted`)
 	}
 
 	return (

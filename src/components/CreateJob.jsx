@@ -13,11 +13,9 @@ import {
 } from '../Utils/api-createJob';
 
 const CreateJob = (props) => {
-  // do i need to pass category list as props or can i run two useEffect in same page?
 
   const { user } = useContext(UserContext)
   console.log(user.user_id)
- // const { categoryList } = props;
  
   const [categoryList, setCategoryList] = useState([]);
   const [subCategoryList, setSubCategoryList] = useState([]);
@@ -46,7 +44,6 @@ const CreateJob = (props) => {
       end_time: form.endTime,
       location: form.location,
     };
-    console.log(postedTask);
     postNewTask(postedTask);
     window.alert(`Thanks ${user.username}, your job has been posted`)
     navigate('/home')
