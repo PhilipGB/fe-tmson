@@ -18,9 +18,10 @@ const Carousel = () => {
       <Link to='/create' id='create-job'>
         Create Job
       </Link>
-      <button>
-        <Link to='/map'>Map of Jobs</Link>
-      </button>
+
+      <Link to='/map' className='btn' id='create-job'>
+        Map of Jobs
+      </Link>
 
       <motion.div
         ref={carousel}
@@ -35,7 +36,7 @@ const Carousel = () => {
           {images.map((image) => {
             return (
               <motion.div className='item' key={image}>
-                <img src={image} />
+                <img src={image} alt='task' />
               </motion.div>
             );
           })}
@@ -80,6 +81,10 @@ const StyledCarousel = styled.div`
   .carousel {
     cursor: grab;
     overflow: hidden;
+  }
+
+  .btn {
+    margin-left: 0.5rem;
   }
 `;
 

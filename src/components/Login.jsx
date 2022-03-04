@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <StyledLogin>
       <form onSubmit={handleSubmit}>
-        <h2 className='logon-title'>Log in</h2>
+        <h2 className='logon-title'>Log In</h2>
         <h2>{error.slice(5)}</h2>
         <input type='email' placeholder='Email' ref={emailRef} required />
         <input
@@ -62,8 +62,8 @@ const Login = () => {
           ref={passwordRef}
           required
         />
-        <button disabled={loading} id='login' type='submit'>
-          Log In
+        <button disabled={loading} id='login' className='btn' type='submit'>
+          Login
         </button>
         <p>
           <Link to='forget-password'>Forget Password</Link>
@@ -76,40 +76,60 @@ const Login = () => {
   );
 };
 const StyledLogin = styled.div`
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: black;
+  color: white;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 3.5rem;
+  }
 
   form {
-    background-color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 10rem 10rem;
-    height: 60%;
+    height: 50%;
     border-radius: 1rem;
+    margin-bottom: 20rem;
+    border: 0.15rem solid #45b480;
+
     .logon-title {
       margin: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #3ac2bb;
     }
   }
 
   input {
-    width: 25rem;
-    margin-bottom: 0.7rem;
-    padding: 1rem 1rem;
-    border: 1px solid black;
+    width: 35rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem 1rem;
+    background-color: black;
+    color: white;
+    border: 0.15rem solid #45b480;
+    border-radius: 0.5rem;
+    font-size: 1rem;
   }
 
   #login {
     display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: #e7e7e7;
-    border-radius: 1rem;
-    border: 1px black solid;
     margin: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
   }
 `;
 

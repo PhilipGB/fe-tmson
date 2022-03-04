@@ -1,11 +1,11 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-
 import { useState, useEffect } from 'react';
 import './App.css';
 import CreateJob from './components/CreateJob';
 import ForgetPassword from './components/ForgetPassword';
 import GlobalStyle from './components/GlobalStyle';
 import Home from './components/Home';
+import JobBookingProcess from './components/JobBookingProcess';
 import Login from './components/Login';
 import Nav from './components/Nav';
 import TaskList from './components/TaskList';
@@ -45,25 +45,32 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <UserContext.Provider value={{ user, setUser }}>
         <AuthProvider>
           <Nav />
           <Routes location={location} key={location.pathname}>
             <Route element={<PrivateRoutes />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/map" element={<Map />} />
-              <Route path="/create" element={<CreateJob />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/:username" element={<UpdateProfile />} />
-              <Route path="/tasks" element={<TaskList />} />
-              <Route path="/search-results" element={<SearchResults />} />
-              <Route path="/profile/:user_id/my-tokens" element={<MyTokens tokens={tokens} />} />
-              <Route path="/profile/:user_id/my-tasks" element={<MyTasks tokens={tokens} />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/map' element={<Map />} />
+              <Route path='/create' element={<CreateJob />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/profile/:username' element={<UpdateProfile />} />
+              <Route path='/tasks' element={<TaskList />} />
+              <Route path='/tasks/:task_id' element={<JobBookingProcess />} />
+              <Route path='/search-results' element={<SearchResults />} />
+              <Route
+                path='/profile/:user_id/my-tokens'
+                element={<MyTokens tokens={tokens} />}
+              />
+              <Route
+                path='/profile/:user_id/my-tasks'
+                element={<MyTasks tokens={tokens} />}
+              />
             </Route>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forget-password" element={<ForgetPassword />} />
+            <Route path='/' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/forget-password' element={<ForgetPassword />} />
           </Routes>
           <GlobalStyle />
         </AuthProvider>
