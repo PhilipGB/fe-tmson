@@ -77,6 +77,7 @@ const Nav = () => {
             ) : (
               ''
             )}
+            <Link to='/profile/:user_id/my-tokens' onClick={() => setIsOpen(false)}>
             <motion.li
               variants={animationLinks}
               whileHover={{ scale: 1.1 }}
@@ -84,6 +85,8 @@ const Nav = () => {
             >
               Tokens
             </motion.li>
+            </Link>
+            <Link to='/profile/:user_id/my-tasks' onClick={() => setIsOpen(false)}>
             <motion.li
               variants={animationLinks}
               whileHover={{ scale: 1.1 }}
@@ -91,6 +94,7 @@ const Nav = () => {
             >
               Jobs
             </motion.li>
+            </Link>
             {isLogged ? (
               <Link to='/' onClick={handleLogOut}>
                 <motion.li
