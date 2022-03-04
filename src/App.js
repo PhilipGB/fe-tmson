@@ -20,6 +20,7 @@ import Profile from './components/Profile';
 import UpdateProfile from './components/UpdateProfile';
 import Map from './components/Map';
 import { getSkills } from '../src/Utils/api-createJob';
+import JobOwnerApprovalProcess from './components/JobOwnerApprovalProcess';
 import { getTokensByUser } from '../src/Utils/api-tokens-new';
 
 function App() {
@@ -60,6 +61,10 @@ function App() {
               <Route path='/tasks' element={<TaskList />} />
               <Route path='/tasks/:task_id' element={<JobBookingProcess />} />
               <Route path='/search-results' element={<SearchResults />} />
+              <Route
+                path='/tasks/my-account/:user_id'
+                element={<JobOwnerApprovalProcess />}
+              />
               <Route
                 path='/profile/:user_id/my-tokens'
                 element={<MyTokens tokens={tokens} />}
