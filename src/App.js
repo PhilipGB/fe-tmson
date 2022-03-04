@@ -36,13 +36,13 @@ function App() {
     bio: '',
   });
   const location = useLocation();
-  const [categoryList, setCategoryList] = useState([]);
+  // const [categoryList, setCategoryList] = useState([]);
 
-  useEffect(() => {
-    getSkills().then((skillsFromApi) => {
-      setCategoryList(skillsFromApi);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getSkills().then((skillsFromApi) => {
+  //     setCategoryList(skillsFromApi);
+  //   });
+  // }, []);
 
   const [tokens, setTokens] = useState([]);
 
@@ -61,7 +61,7 @@ function App() {
             <Route element={<PrivateRoutes />}>
               <Route path="/home" element={<Home />} />
               <Route path="/map" element={<Map />} />
-              <Route path="/create" element={<CreateJob categoryList={categoryList} />} />
+              <Route path="/create" element={<CreateJob /*categoryList={categoryList}*/ />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/:username" element={<UpdateProfile />} />
               <Route path="/tasks" element={<TaskList />} />

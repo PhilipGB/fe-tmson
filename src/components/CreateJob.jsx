@@ -17,8 +17,11 @@ const CreateJob = (props) => {
 
   const { user } = useContext(UserContext)
   console.log(user.user_id)
-  const { categoryList } = props;
+ // const { categoryList } = props;
+ 
+  const [categoryList, setCategoryList] = useState([]);
   const [subCategoryList, setSubCategoryList] = useState([]);
+
   const [form, setForm] = useState({
     taskName: '',
     category: 'languages',
@@ -50,11 +53,14 @@ const CreateJob = (props) => {
     
   };
 
-  // introduce a state that changes when category selected? To then trigger useEffect?
   useEffect(() => {
+    getSkills().then((skillsFromApi) => {
+      setCategoryList(skillsFromApi);
+      });
     getSkillsSubCat(form.category).then((subSkillsFromApi) => {
       setSubCategoryList(subSkillsFromApi);
     });
+    
   }, [form.category]);
 
   return (
